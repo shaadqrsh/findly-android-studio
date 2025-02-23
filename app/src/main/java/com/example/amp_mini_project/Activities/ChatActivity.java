@@ -150,7 +150,7 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 }
-                chatAdapter.notifyDataSetChanged();
+                chatAdapter.setMessages(messageList);
                 if (!messageList.isEmpty()) {
                     chatRecyclerView.scrollToPosition(messageList.size() - 1);
                 }

@@ -190,12 +190,13 @@ public class ListActivity extends AppCompatActivity {
         foundButton.setOnClickListener(v -> navigateTo(FoundListActivity.class));
         mineButton.setOnClickListener(v -> navigateTo(MineListActivity.class));
         profileButton.setOnClickListener(v -> navigateTo(ProfileActivity.class));
-        // messagesButton.setOnClickListener(v -> navigateTo(MessagesActivity.class));
+        messagesButton.setOnClickListener(v -> navigateTo(ChatActivity.class));
     }
 
     protected void navigateTo(Class<?> targetActivity) {
         Intent intent = new Intent(this, targetActivity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("item_id", "-OH6IJ9La2q8wCAXx21i");
         startActivity(intent);
         overridePendingTransition(0, 0);
     }

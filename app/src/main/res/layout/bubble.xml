@@ -16,15 +16,16 @@
         android:scaleType="centerCrop"
         android:src="@drawable/my_placeholder" />
 
-    <!-- Chat Bubble Container -->
+    <!-- Chat Bubble Container with a minWidth so it can at least display the timestamp -->
     <LinearLayout
         android:id="@+id/bubble_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
-        <!-- android:background="@drawable/bubble_background"> -->
-
+        android:padding="8dp"
+        android:minWidth="120dp"
+        android:background="@color/mySecondary"
+        >
 
         <!-- Message Text -->
         <TextView
@@ -68,7 +69,7 @@
 
             <TextView
                 android:id="@+id/date_time"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="12:00 PM"
                 android:textSize="12sp"
