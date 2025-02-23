@@ -23,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.target.Target;
-import com.example.amp_mini_project.ContactActivity;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseUser;
 import com.example.amp_mini_project.Helpers.MyApp;
