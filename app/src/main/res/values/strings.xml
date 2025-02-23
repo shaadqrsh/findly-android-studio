@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Findly</string>
+    <string-array name="categories">
+        <item>Books</item>
+        <item>Clothing</item>
+        <item>Documents</item>
+        <item>Electronics</item>
+        <item>Jewellery</item>
+        <item>Stationary</item>
+        <item>Other</item>
+    </string-array>
+</resources>
