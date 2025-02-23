@@ -1,9 +1,7 @@
 package com.example.amp_mini_project.Activities;
 
-import android.Manifest;
-import android.app.AlertDialog;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,13 +19,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Helpers.ImageHelper;
 import com.example.amp_mini_project.Helpers.MyApp;
 import com.example.amp_mini_project.R;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,7 +34,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     private EditText etName, etDescription;
     private Spinner spinnerCategory;
-    private Button btnSubmit;
+    private Button btnSubmit, btnUploadImage;
     private RadioGroup radioGroup;
     private RadioButton radioItem1, radioItem2;
     private int itemType;
@@ -45,7 +42,6 @@ public class AddItemActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private Uri imageUri;
     private ImageView imgPreview;
-    private Button btnUploadImage;
     private StorageReference storageReference;
     private String imageUrl;
     private LinearLayout loadingOverlay;
@@ -105,23 +101,7 @@ public class AddItemActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(v -> submitData());
 
         btnUploadImage.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select Image Source")
-                    .setItems(new CharSequence[]{"Gallery", "Camera"}, (dialog, which) -> {
-                        if (which == 0) {
-                            ImageHelper.openFileChooser(this);
-                        } else if (which == 1) {
-                            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                                    != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(this,
-                                        new String[]{Manifest.permission.CAMERA},
-                                        ImageHelper.CAMERA_PERMISSION_REQUEST_CODE);
-                            } else {
-                                ImageHelper.openCamera(this);
-                            }
-                        }
-                    });
-            builder.create().show();
+            ImageHelper.showImageSourceDialog(this);
         });
 
         hideLoadingOverlay();
@@ -200,7 +180,6 @@ public class AddItemActivity extends AppCompatActivity {
         MyApp app = (MyApp) getApplication();
         String userId = app.getUserId();
 
-        long currentTimestamp = System.currentTimeMillis() / 1000L;
         String entryId = databaseReference.push().getKey();
 
         if (entryId != null) {
@@ -208,7 +187,7 @@ public class AddItemActivity extends AppCompatActivity {
             databaseItem.setName(name);
             databaseItem.setCategory(category);
             databaseItem.setDescription(description);
-            databaseItem.setUploadTime(currentTimestamp);
+            databaseItem.setUploadTime(System.currentTimeMillis());
             databaseItem.setUploaderId(userId);
             databaseItem.setStatus(0);
             databaseItem.setType(itemType);

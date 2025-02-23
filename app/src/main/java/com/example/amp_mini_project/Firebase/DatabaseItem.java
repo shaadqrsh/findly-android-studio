@@ -38,7 +38,7 @@ public class DatabaseItem {
         return uploaderId;
     }
     public long getUploadTime() {
-        return uploadTime * 1000;
+        return uploadTime;
     }
     public int getStatus() {
         return status;

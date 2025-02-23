@@ -2,7 +2,6 @@ package com.example.amp_mini_project.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseItemAdapter;
 import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.ProfileActivity;
 import com.example.amp_mini_project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;

@@ -1,13 +1,18 @@
 package com.example.amp_mini_project.Helpers;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
@@ -30,6 +35,27 @@ public class ImageHelper {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
+
+    public static void showImageSourceDialog(Activity activity) {
+        new AlertDialog.Builder(activity)
+                .setTitle("Select Image Source")
+                .setItems(new CharSequence[]{"Gallery", "Camera"}, (dialog, which) -> {
+                    if (which == 0) {
+                        openFileChooser(activity);
+                    } else if (which == 1) {
+                        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(activity,
+                                    new String[]{Manifest.permission.CAMERA},
+                                    CAMERA_PERMISSION_REQUEST_CODE);
+                        } else {
+                            openCamera(activity);
+                        }
+                    }
+                })
+                .create().show();
+    }
+
 
     public static void openCamera(Activity activity) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
