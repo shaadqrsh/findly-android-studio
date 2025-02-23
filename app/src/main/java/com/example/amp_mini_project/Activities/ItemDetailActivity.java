@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.target.Target;
+import com.example.amp_mini_project.ContactActivity;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseUser;
 import com.example.amp_mini_project.Helpers.MyApp;
@@ -54,7 +55,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     private DatabaseItem currentItem;
     private String currentItemKey;
     private Uri imageUri;
-    private String currentImageUrl; // hold the current image URL
+    private String currentImageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +89,10 @@ public class ItemDetailActivity extends AppCompatActivity {
         if (currentItemKey != null) {
             loadItemDetails(currentItemKey);
         }
-
-        // Set listeners
         contactButton.setOnClickListener(v -> {
-            // Contact logic (e.g., navigate to another activity or show dialog)
+            Intent intent2 = new Intent(ItemDetailActivity.this, ContactActivity.class);
+            intent2.putExtra("itemKey", currentItemKey);
+            startActivity(intent2);
         });
 
         statusToggleButton.setOnClickListener(v -> toggleItemStatus(currentItemKey));
@@ -138,7 +139,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         Uri resultUri = ImageHelper.handleActivityResult(requestCode, resultCode, data);
         if (resultUri != null) {
             imageUri = resultUri;
-            // Update the preview in the itemImage view; do not upload immediately.
             itemImage.setImageURI(imageUri);
         }
     }

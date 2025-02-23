@@ -66,10 +66,7 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
                 holder.itemUploader.setText(name);
             });
         }
-
-        // Show loading progress while the image is being loaded
         holder.imageLoadingProgress.setVisibility(View.VISIBLE);
-
         if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
             Glide.with(context)
                     .load(item.getImageUrl())
@@ -79,24 +76,21 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            holder.imageLoadingProgress.setVisibility(View.GONE); // Hide progress on failure
+                            holder.imageLoadingProgress.setVisibility(View.GONE);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            holder.imageLoadingProgress.setVisibility(View.GONE); // Hide progress on success
+                            holder.imageLoadingProgress.setVisibility(View.GONE);
                             return false;
                         }
                     })
                     .into(holder.itemImage);
         } else {
-            holder.imageLoadingProgress.setVisibility(View.GONE); // No URL, hide progress
+            holder.imageLoadingProgress.setVisibility(View.GONE);
             holder.itemImage.setImageResource(R.drawable.my_placeholder);
         }
-
-
-
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("itemKey", item.getKey());
