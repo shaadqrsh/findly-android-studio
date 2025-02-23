@@ -1,14 +1,8 @@
-package com.example.amp_mini_project;
+package com.example.amp_mini_project.Activities;
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,19 +12,16 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
-import com.example.amp_mini_project.Activities.FoundListActivity;
-import com.example.amp_mini_project.Activities.LostListActivity;
-import com.example.amp_mini_project.Activities.MineListActivity;
 import com.example.amp_mini_project.Firebase.DatabaseUser;
 import com.example.amp_mini_project.Helpers.ImageHelper;
 import com.example.amp_mini_project.Helpers.MyApp;
+import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView profileImageView;
@@ -47,13 +37,10 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText nameEditText, emailEditText, phoneEditText;
     private Button changeProfilePicButton, editButton;
     private Uri imageUri;
-
-    // New field for camera image Uri
-    private Uri photoUri;
-
     private DatabaseReference usersRef;
     private StorageReference storageRef;
     private String userId;
+    private String profileUri;
 
     private boolean isEditing = false;
 
@@ -77,6 +64,12 @@ public class ProfileActivity extends AppCompatActivity {
         changeProfilePicButton = findViewById(R.id.changeProfilePicButton);
         editButton = findViewById(R.id.editButton);
 
+        // Initially hide the change profile picture button and editing fields
+        changeProfilePicButton.setVisibility(View.GONE);
+        nameEditText.setVisibility(View.GONE);
+        emailEditText.setVisibility(View.GONE);
+        phoneEditText.setVisibility(View.GONE);
+
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setVisibility(View.GONE);
 
@@ -86,24 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
         loadUserData();
 
         changeProfilePicButton.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select Image Source")
-                    .setItems(new CharSequence[]{"Gallery", "Camera"}, (dialog, which) -> {
-                        if (which == 0) {
-                            ImageHelper.openFileChooser(this);
-                        } else if (which == 1) {
-                            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                                    != PackageManager.PERMISSION_GRANTED) {
-                                Log.i("AAAA", "AAAA");
-                                ActivityCompat.requestPermissions(this,
-                                        new String[]{Manifest.permission.CAMERA},
-                                        ImageHelper.CAMERA_PERMISSION_REQUEST_CODE);
-                            } else {
-                                ImageHelper.openCamera(this);
-                            }
-                        }
-                    });
-            builder.create().show();
+            ImageHelper.showImageSourceDialog(this);
         });
 
         editButton.setOnClickListener(v -> {
@@ -111,6 +87,19 @@ public class ProfileActivity extends AppCompatActivity {
                 updateUserData();
             } else {
                 enableEditing();
+            }
+        });
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (isEditing) {
+                    disableEditing();
+                } else {
+                    setEnabled(false);
+                    onBackPressedDispatcher.onBackPressed();
+                }
             }
         });
 
@@ -124,8 +113,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (resultUri != null) {
             imageUri = resultUri;
             profileImageView.setImageURI(imageUri);
-            showLoadingOverlay();
-            uploadProfilePicture();
         }
     }
 
@@ -141,31 +128,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void uploadProfilePicture() {
-        if (imageUri == null) {
-            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        StorageReference fileRef = storageRef.child(userId + ".jpg");
-        fileRef.putFile(imageUri)
-                .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    String imageUrl = uri.toString();
-                    usersRef.child(userId).child("profileImage").setValue(imageUrl)
-                            .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(this, "Profile picture updated!", Toast.LENGTH_SHORT).show();
-                                hideLoadingOverlay();
-                            })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(this, "Failed to update profile picture.", Toast.LENGTH_SHORT).show();
-                                hideLoadingOverlay();
-                            });
-                }))
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Image upload failed.", Toast.LENGTH_SHORT).show();
-                    hideLoadingOverlay();
-                });
-    }
-
     private void loadUserData() {
         showLoadingOverlay();
         usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -179,13 +141,14 @@ public class ProfileActivity extends AppCompatActivity {
                         emailTextView.setText(user.getEmail());
                         phoneTextView.setText(user.getPhone());
 
-
                         nameEditText.setText(user.getName());
                         emailEditText.setText(user.getEmail());
                         phoneEditText.setText(user.getPhone());
 
-                        if (user.getProfileUri() != null && !user.getProfileUri().isEmpty()) {
-                            Glide.with(ProfileActivity.this).load(user.getProfileUri()).into(profileImageView);
+                        profileUri = user.getProfileUri();
+
+                        if (profileUri != null && !profileUri.isEmpty()) {
+                            Glide.with(ProfileActivity.this).load(profileUri).into(profileImageView);
                         }
                     }
                 }
@@ -202,13 +165,35 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void enableEditing() {
         isEditing = true;
+        // Hide display TextViews
         nameTextView.setVisibility(View.GONE);
         emailTextView.setVisibility(View.GONE);
         phoneTextView.setVisibility(View.GONE);
+        // Show editing fields
         nameEditText.setVisibility(View.VISIBLE);
         emailEditText.setVisibility(View.VISIBLE);
         phoneEditText.setVisibility(View.VISIBLE);
+        // Change button text to "Submit"
         editButton.setText("Submit");
+        // Show the change picture button
+        changeProfilePicButton.setVisibility(View.VISIBLE);
+    }
+
+    // Updated disableEditing to revert to view mode.
+    private void disableEditing() {
+        isEditing = false;
+        // Show display TextViews
+        nameTextView.setVisibility(View.VISIBLE);
+        emailTextView.setVisibility(View.VISIBLE);
+        phoneTextView.setVisibility(View.VISIBLE);
+        // Hide editing fields
+        nameEditText.setVisibility(View.GONE);
+        emailEditText.setVisibility(View.GONE);
+        phoneEditText.setVisibility(View.GONE);
+        // Reset the edit button text
+        editButton.setText("Edit");
+        // Hide the change picture button
+        changeProfilePicButton.setVisibility(View.GONE);
     }
 
     private void updateUserData() {
@@ -230,17 +215,46 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         showLoadingOverlay();
-        DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, "");
-        usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
-                isEditing = false;
-                editButton.setText("Edit");
-            } else {
-                Toast.makeText(ProfileActivity.this, "Failed to update profile.", Toast.LENGTH_SHORT).show();
-            }
-            hideLoadingOverlay();
-        });
+
+        // Runnable to update the database if no new image was selected.
+        Runnable updateDatabase = () -> {
+            // If no new image selected, keep the existing profileUri.
+            String profileImageToSave = (imageUri == null) ? profileUri : "";
+            DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, profileImageToSave);
+            usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                    disableEditing();
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Failed to update profile.", Toast.LENGTH_SHORT).show();
+                }
+                hideLoadingOverlay();
+            });
+        };
+
+        if (imageUri != null) {
+            StorageReference fileRef = storageRef.child(userId + ".jpg");
+            fileRef.putFile(imageUri)
+                    .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+                        profileUri = imageUrl;
+                        DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, imageUrl);
+                        usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                                disableEditing();
+                            } else {
+                                Toast.makeText(ProfileActivity.this, "Failed to update profile.", Toast.LENGTH_SHORT).show();
+                            }
+                            hideLoadingOverlay();
+                        });
+                    })).addOnFailureListener(e -> {
+                        Toast.makeText(this, "Image upload failed.", Toast.LENGTH_SHORT).show();
+                        hideLoadingOverlay();
+                    });
+        } else {
+            updateDatabase.run();
+        }
     }
 
     private void showLoadingOverlay() {

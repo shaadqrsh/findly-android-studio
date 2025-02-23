@@ -1,166 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Image Placeholder -->
-    <ImageView
-        android:id="@+id/item_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scaleType="centerCrop"
-        android:src="@drawable/my_placeholder" />
-
-    <!-- Item Name -->
-    <TextView
-        android:id="@+id/item_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/myPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <!-- Category -->
-    <TextView
-        android:id="@+id/item_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Description (remains above uploader details) -->
-    <TextView
-        android:id="@+id/item_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"
-        android:lineSpacingExtra="4dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <!-- Uploader Details Container (placed right above the Contact Button) -->
     <LinearLayout
-        android:id="@+id/uploader_details_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Left side: Profile icon and uploader info -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <!-- Image Placeholder -->
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/my_placeholder" />
+
+        <!-- Upload Image Button (only visible in edit mode) -->
+        <Button
+            android:id="@+id/upload_image_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Upload Image"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/myPrimary"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+
+        <!-- Item Name (View and Edit versions) -->
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/myPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/item_name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edit item name"
+            android:textSize="24sp"
+            android:visibility="gone" />
+
+        <!-- Category (View and Edit versions) -->
+        <TextView
+            android:id="@+id/item_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/item_category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+
+        <!-- Description (View and Edit versions) -->
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp"
+            android:lineSpacingExtra="4dp" />
+
+        <EditText
+            android:id="@+id/item_description_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edit description"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:lineSpacingExtra="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Uploader Details Container (unchanged) -->
+        <LinearLayout
+            android:id="@+id/uploader_details_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
             android:gravity="center_vertical">
 
-            <!-- Profile Icon -->
-            <ImageView
-                android:id="@+id/profile_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/my_placeholder"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Profile Icon" />
+            <!-- Left side: Profile icon and uploader info -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <!-- Uploader Label and Name -->
+                <!-- Profile Icon -->
+                <ImageView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/my_placeholder"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Profile Icon" />
+
+                <!-- Uploader Label and Name -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/uploaded_by_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uploaded by"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/uploaded_by"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Right side: Uploaded on label and date/time -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/uploaded_by_label"
+                    android:id="@+id/uploaded_on_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Uploaded by"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/darker_gray" />
+                    android:text="Uploaded on"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/uploaded_by"
+                    android:id="@+id/upload_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Right side: Uploaded on label and date/time -->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!-- For uploader: Edit button to toggle editing -->
+        <Button
+            android:id="@+id/edit_item_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="vertical">
+            android:backgroundTint="@color/myPrimary"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/uploaded_on_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Uploaded on"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
+        <!-- Contact Button (for non-uploader) -->
+        <Button
+            android:id="@+id/contact_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/myPrimary"
+            android:text="Contact"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
 
-            <TextView
-                android:id="@+id/upload_date_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="14sp" />
-        </LinearLayout>
+        <!-- Mark as Open Button (for uploader, if desired) -->
+        <Button
+            android:id="@+id/mark_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/myPrimary"
+            android:text="Mark as Open"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
-    <!-- Contact Button -->
-    <Button
-        android:id="@+id/contact_button"
+    <!-- Loading Overlay -->
+    <LinearLayout
+        android:id="@+id/loading_overlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/myPrimary"
-        android:text="Contact"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <!-- Mark as Open Button -->
-    <Button
-        android:id="@+id/mark_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/myPrimary"
-        android:text="Mark as Open"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
-
-</LinearLayout>
-
-<!-- Loading Overlay -->
-<LinearLayout
-    android:id="@+id/loading_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#80000000"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:visibility="visible">
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </FrameLayout>
