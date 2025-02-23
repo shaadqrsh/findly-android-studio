@@ -209,8 +209,9 @@ public class ProfileActivity extends AppCompatActivity {
             emailEditText.setError("Invalid email address");
             return;
         }
-        if (!updatedPhone.matches("\\d{10,15}")) {
-            phoneEditText.setError("Phone number must be 10-15 digits long");
+        // Updated regex to allow optional leading '+' for country codes.
+        if (!updatedPhone.matches("^\\+?\\d{10,15}$")) {
+            phoneEditText.setError("Phone number must be 10-15 digits long, optionally starting with '+'");
             return;
         }
 
@@ -223,6 +224,10 @@ public class ProfileActivity extends AppCompatActivity {
             DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, profileImageToSave);
             usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    // Update display fields with new data
+                    nameTextView.setText(updatedName);
+                    emailTextView.setText(updatedEmail);
+                    phoneTextView.setText(updatedPhone);
                     Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
                     disableEditing();
                 } else {
@@ -241,6 +246,11 @@ public class ProfileActivity extends AppCompatActivity {
                         DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, imageUrl);
                         usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
+                                // Update display fields with new data and refresh the profile image
+                                nameTextView.setText(updatedName);
+                                emailTextView.setText(updatedEmail);
+                                phoneTextView.setText(updatedPhone);
+                                Glide.with(ProfileActivity.this).load(profileUri).into(profileImageView);
                                 Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
                                 disableEditing();
                             } else {
@@ -249,7 +259,7 @@ public class ProfileActivity extends AppCompatActivity {
                             hideLoadingOverlay();
                         });
                     })).addOnFailureListener(e -> {
-                        Toast.makeText(this, "Image upload failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Image upload failed.", Toast.LENGTH_SHORT).show();
                         hideLoadingOverlay();
                     });
         } else {
