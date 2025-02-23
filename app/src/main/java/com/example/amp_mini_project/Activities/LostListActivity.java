@@ -22,12 +22,8 @@ public class LostListActivity extends ListActivity {
         super.setupBottomNavigation();
         LinearLayout button = findViewById(R.id.button_lost);
         button.setBackgroundColor(getColor(R.color.mySecondary));
-
-        // Change text color of the TextView
         TextView textView = findViewById(R.id.text_lost);
         textView.setTextColor(getResources().getColor(R.color.black));
-
-        // Optionally modify the ImageView tint or resource
         ImageView imageView = findViewById(R.id.icon_lost);
         imageView.setColorFilter(getResources().getColor(R.color.black));
         button.setOnClickListener(null);

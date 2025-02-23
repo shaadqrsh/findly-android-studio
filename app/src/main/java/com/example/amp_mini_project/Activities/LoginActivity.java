@@ -96,12 +96,10 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-                        // Incorrect password
                         passwordField.setError("Incorrect password");
                         passwordField.requestFocus();
                     }
                 } else {
-                    // User not found
                     usernameField.setError("User not found");
                     usernameField.requestFocus();
                 }

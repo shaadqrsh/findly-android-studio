@@ -5,75 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
-    android:gravity="start">
+    android:padding="8dp">
 
+    <!-- Profile Icon on the Left (for received messages) -->
     <ImageView
-        android:id="@+id/profile_icon"
+        android:id="@+id/profile_icon_left"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/my_placeholder"
+        android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
-        android:layout_marginEnd="8dp" />
+        android:src="@drawable/my_placeholder" />
 
+    <!-- Chat Bubble Container -->
     <LinearLayout
         android:id="@+id/bubble_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp">
+        <!-- android:background="@drawable/bubble_background"> -->
 
-    <TextView
-        android:id="@+id/message_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message goes here"
-        android:textSize="16sp"
-        android:textColor="@android:color/black" />
 
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
-
-        <Button
-            android:id="@+id/copy_email_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Copy Email" />
-
-        <Button
-            android:id="@+id/copy_phone_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Copy Phone Number"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/status_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:gravity="end">
-
+        <!-- Message Text -->
         <TextView
-            android:id="@+id/date_time"
+            android:id="@+id/message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:00 PM"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray" />
+            android:text="Message goes here"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
 
-        <ImageView
-            android:id="@+id/read_receipt_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/my_placeholder"
-            android:contentDescription="Read Receipt" />
+        <!-- Buttons Row: Copy Email and Copy Phone Number -->
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/copy_email_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Copy Email" />
+
+            <Button
+                android:id="@+id/copy_phone_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Copy Phone Number"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Status Row: Date/Time and Read Receipt Icon -->
+        <LinearLayout
+            android:id="@+id/status_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00 PM"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray" />
+
+            <ImageView
+                android:id="@+id/read_receipt_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/my_placeholder"
+                android:contentDescription="Read Receipt" />
+        </LinearLayout>
     </LinearLayout>
+
+    <!-- Profile Icon on the Right (for sent messages) -->
+    <ImageView
+        android:id="@+id/profile_icon_right"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/my_placeholder" />
 </LinearLayout>
