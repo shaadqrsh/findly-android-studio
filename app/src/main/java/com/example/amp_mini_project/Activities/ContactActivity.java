@@ -135,6 +135,7 @@ public class ContactActivity extends AppCompatActivity {
         DatabaseMessage message = new DatabaseMessage(
                 senderId,
                 receiverId,
+                currentItemKey,
                 text,
                 System.currentTimeMillis(),
                 false,

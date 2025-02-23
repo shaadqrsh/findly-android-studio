@@ -4,6 +4,7 @@ public class DatabaseMessage {
 
     private String senderId;
     private String receiverId;
+    private String itemId;
     private String text;
     private long timestamp;
     private boolean read;
@@ -13,9 +14,10 @@ public class DatabaseMessage {
     public DatabaseMessage() {
     }
 
-    public DatabaseMessage(String senderId, String receiverId, String text, long timestamp, boolean read, boolean sendPhoneNumber, boolean sendEmail) {
+    public DatabaseMessage(String senderId, String receiverId, String itemId, String text, long timestamp, boolean read, boolean sendPhoneNumber, boolean sendEmail) {
         this.senderId = senderId;
         this.receiverId = receiverId;
+        this.itemId = itemId;
         this.text = text;
         this.timestamp = timestamp;
         this.read = read;
@@ -29,6 +31,10 @@ public class DatabaseMessage {
     public String getReceiverId() {
         return receiverId;
     }
+    public String getItemId() {
+        return itemId;
+    }
+
     public String getText() {
         return text;
     }
@@ -50,6 +56,9 @@ public class DatabaseMessage {
     }
     public void setSenderId(String senderId) {
         this.senderId = senderId;
+    }
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
     public void setText(String text) {
         this.text = text;
