@@ -42,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     private String userId;
     private String profileUri;
 
+    private String currentPassword;
+
     private boolean isEditing = false;
 
     @Override
@@ -201,6 +203,18 @@ public class ProfileActivity extends AppCompatActivity {
         String updatedEmail = emailEditText.getText().toString().trim();
         String updatedPhone = phoneEditText.getText().toString().trim();
 
+        usersRef.child(userId).child(DatabaseUser.key_password)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        currentPassword = snapshot.getValue(String.class);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Handle error
+                    }
+                });
+
         if (updatedName.isEmpty()) {
             nameEditText.setError("Name cannot be empty");
             return;
@@ -217,11 +231,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         showLoadingOverlay();
 
-        // Runnable to update the database if no new image was selected.
         Runnable updateDatabase = () -> {
-            // If no new image selected, keep the existing profileUri.
             String profileImageToSave = (imageUri == null) ? profileUri : "";
-            DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, profileImageToSave);
+            DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, currentPassword, profileImageToSave);
             usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     // Update display fields with new data
@@ -243,7 +255,7 @@ public class ProfileActivity extends AppCompatActivity {
                     .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         String imageUrl = uri.toString();
                         profileUri = imageUrl;
-                        DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, imageUrl);
+                        DatabaseUser updatedUser = new DatabaseUser(updatedName, updatedPhone, updatedEmail, currentPassword, imageUrl);
                         usersRef.child(userId).setValue(updatedUser).addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 // Update display fields with new data and refresh the profile image
@@ -286,7 +298,7 @@ public class ProfileActivity extends AppCompatActivity {
         lostButton.setOnClickListener(v -> navigateTo(LostListActivity.class));
         foundButton.setOnClickListener(v -> navigateTo(FoundListActivity.class));
         mineButton.setOnClickListener(v -> navigateTo(MineListActivity.class));
-        // messagesButton.setOnClickListener(v -> navigateTo(MessagesActivity.class));
+        messagesButton.setOnClickListener(v -> navigateTo(MessagesActivity.class));
 
         LinearLayout profileButton = findViewById(R.id.button_profile);
         profileButton.setBackgroundColor(getColor(R.color.mySecondary));

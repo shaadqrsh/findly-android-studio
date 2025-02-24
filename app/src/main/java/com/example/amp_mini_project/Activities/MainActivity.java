@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MyApp app = (MyApp) getApplication();
-        app.setUserId("shaad");
+        // app.setUserId("shaad");
 
         new Handler().postDelayed(() -> {
             Intent intent;

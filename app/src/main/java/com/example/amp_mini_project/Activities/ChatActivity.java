@@ -138,16 +138,16 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     DatabaseMessage message = child.getValue(DatabaseMessage.class);
                     if (message != null && message.getItemId().equals(currentItemKey)) {
-                        boolean isOutgoing = message.getSenderId().equals(currentUserId)
-                                && message.getReceiverId().equals(currentItem.getUploaderId());
-                        boolean isIncoming = message.getSenderId().equals(currentItem.getUploaderId())
-                                && message.getReceiverId().equals(currentUserId);
-                        if (isOutgoing || isIncoming) {
+                        String senderId = message.getSenderId();
+                        String receiverId = message.getReceiverId();
+                        boolean currentUserInvolved = senderId.equals(currentUserId) || receiverId.equals(currentUserId);
+                        if (currentUserInvolved) {
                             messageList.add(message);
-                            if (isIncoming && !message.isRead()) {
+                            if (receiverId.equals(currentUserId) && !message.isRead()) {
                                 child.getRef().child("read").setValue(true);
                             }
                         }
+
                     }
                 }
                 chatAdapter.setMessages(messageList);
