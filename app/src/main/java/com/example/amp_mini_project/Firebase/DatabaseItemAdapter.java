@@ -42,7 +42,7 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_card, parent, false);
+                .inflate(R.layout.item_list_card, parent, false);
         return new ItemViewHolder(view);
     }
 

@@ -57,7 +57,7 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
     public CombinedMessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Always inflate the combined layout.
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.bubble, parent, false);
+                .inflate(R.layout.item_chat_bubble, parent, false);
         return new CombinedMessageViewHolder(view);
     }
 

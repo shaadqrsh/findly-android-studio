@@ -9,12 +9,12 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.MineListActivity">
+        tools:context=".Activities.FoundListActivity">
 
         <!-- Top Bar -->
         <include
             android:id="@+id/top_bar"
-            layout="@layout/top_bar"
+            layout="@layout/fragment_top_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
         <!-- Bottom Bar -->
         <include
             android:id="@+id/bottom_bar"
-            layout="@layout/bottom_bar"
+            layout="@layout/fragment_bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

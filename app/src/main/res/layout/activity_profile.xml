@@ -1,13 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/myPrimary">
+    android:backgroundTint="@color/myPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.ProfileActivity">
 
     <!-- Top Bar -->
 
     <include
         android:id="@+id/top_bar"
-        layout="@layout/top_bar" />
+        layout="@layout/fragment_top_bar" />
 
     <!-- Content ScrollView -->
     <ScrollView
@@ -119,7 +121,7 @@
     <!-- Bottom Bar -->
     <include
         android:id="@+id/bottom_bar"
-        layout="@layout/bottom_bar"
+        layout="@layout/fragment_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

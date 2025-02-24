@@ -38,7 +38,6 @@ public class AddItemActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioItem1, radioItem2;
     private int itemType;
-    private SearchView searchView;
     private DatabaseReference databaseReference;
     private Uri imageUri;
     private ImageView imgPreview;
@@ -63,7 +62,7 @@ public class AddItemActivity extends AppCompatActivity {
         radioItem2 = findViewById(R.id.radio_found);
         loadingOverlay = findViewById(R.id.loading_overlay);
 
-        searchView = findViewById(R.id.searchView);
+        SearchView searchView = findViewById(R.id.searchView);
         searchView.setVisibility(View.GONE);
 
         // Firebase Storage reference
