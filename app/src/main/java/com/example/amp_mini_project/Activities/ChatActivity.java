@@ -1,13 +1,10 @@
 package com.example.amp_mini_project.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseMessage;
-import com.example.amp_mini_project.Firebase.DatabaseMessageAdapter;
+import com.example.amp_mini_project.Firebase.DatabaseChatAdapter;
 import com.example.amp_mini_project.Helpers.MyApp;
 import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +33,7 @@ public class ChatActivity extends AppCompatActivity {
     private EditText chatInput;
     private Button sendButton;
     private CheckBox sendPhoneCheckbox, sendEmailCheckbox;
-    private DatabaseMessageAdapter chatAdapter;
+    private DatabaseChatAdapter chatAdapter;
     private List<DatabaseMessage> messageList;
 
     private String currentUserId;
@@ -68,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         messageList = new ArrayList<>();
-        chatAdapter = new DatabaseMessageAdapter(messageList, currentUserId);
+        chatAdapter = new DatabaseChatAdapter(messageList, currentUserId);
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         chatRecyclerView.setAdapter(chatAdapter);
 
@@ -138,16 +135,16 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     DatabaseMessage message = child.getValue(DatabaseMessage.class);
                     if (message != null && message.getItemId().equals(currentItemKey)) {
-                        String senderId = message.getSenderId();
-                        String receiverId = message.getReceiverId();
-                        boolean currentUserInvolved = senderId.equals(currentUserId) || receiverId.equals(currentUserId);
+                        boolean currentUserInvolved =
+                                currentUserId.equals(message.getSenderId()) ||
+                                        currentUserId.equals(message.getReceiverId());
                         if (currentUserInvolved) {
                             messageList.add(message);
-                            if (receiverId.equals(currentUserId) && !message.isRead()) {
+
+                            if (message.isUnreadFor(currentUserId)) {
                                 child.getRef().child("read").setValue(true);
                             }
                         }
-
                     }
                 }
                 chatAdapter.setMessages(messageList);
@@ -155,11 +152,13 @@ public class ChatActivity extends AppCompatActivity {
                     chatRecyclerView.scrollToPosition(messageList.size() - 1);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ChatActivity.this, "Failed to load messages", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatActivity.this,
+                        "Failed to load messages",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }

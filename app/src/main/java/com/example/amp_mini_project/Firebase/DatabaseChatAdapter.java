@@ -31,12 +31,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessageAdapter.CombinedMessageViewHolder> {
+public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapter.CombinedMessageViewHolder> {
 
     private List<DatabaseMessage> messageList;
     private String currentUserId;
 
-    public DatabaseMessageAdapter(List<DatabaseMessage> messageList, String currentUserId) {
+    public DatabaseChatAdapter(List<DatabaseMessage> messageList, String currentUserId) {
         this.messageList = messageList;
         this.currentUserId = currentUserId;
         sortMessages();
@@ -101,7 +101,7 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
 
         void bind(DatabaseMessage message, int position) {
             messageText.setText(message.getText());
-            dateTime.setText(formatTimestamp(message.getTimestamp()));
+            dateTime.setText(message.getFormattedTimestamp());
 
             // Set read receipt icon based on message read status.
             if (message.isRead()) {
@@ -118,7 +118,6 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
 
             if (isSent) {
                 profileIconLeft.setVisibility(View.GONE);
-                // For sent messages, show right profile if needed.
                 if (shouldShowProfile(position)) {
                     profileIconRight.setVisibility(View.VISIBLE);
                     loadSenderProfile(message.getSenderId(), itemView.getContext(), true);
@@ -126,7 +125,6 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
                     profileIconRight.setVisibility(View.INVISIBLE);
                 }
                 rootLayout.setGravity(Gravity.END);
-                // Align timestamp to the right for sent messages.
                 dateTime.setGravity(Gravity.END);
             } else {
                 profileIconRight.setVisibility(View.GONE);
@@ -137,9 +135,7 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
                     profileIconLeft.setVisibility(View.INVISIBLE);
                 }
                 rootLayout.setGravity(Gravity.START);
-                // Align timestamp to the left for received messages.
                 dateTime.setGravity(Gravity.START);
-                // Optionally, hide read receipt for received messages.
                 readReceiptIcon.setVisibility(View.GONE);
             }
         }
@@ -203,11 +199,6 @@ public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessage
                     // Optionally handle error.
                 }
             });
-        }
-
-        private String formatTimestamp(long timestamp) {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-            return sdf.format(new Date(timestamp));
         }
     }
 }

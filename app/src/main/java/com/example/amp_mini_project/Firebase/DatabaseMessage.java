@@ -75,4 +75,21 @@ public class DatabaseMessage {
     public void setSendEmail(boolean sendEmail) {
         this.sendEmail = sendEmail;
     }
+
+    public String getFormattedTimestamp() {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM d, HH:mm");
+        return sdf.format(new java.util.Date(timestamp));
+    }
+
+    public boolean isUnreadFor(String currentUserId) {
+        return !read && receiverId.equals(currentUserId);
+    }
+
+    public String getOtherPersonId(String currentUserId) {
+        if (senderId.equals(currentUserId)) {
+            return receiverId;
+        } else {
+            return senderId;
+        }
+    }
 }

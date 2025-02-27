@@ -190,7 +190,7 @@ public class ListActivity extends AppCompatActivity {
         foundButton.setOnClickListener(v -> navigateTo(FoundListActivity.class));
         mineButton.setOnClickListener(v -> navigateTo(MineListActivity.class));
         profileButton.setOnClickListener(v -> navigateTo(ProfileActivity.class));
-        messagesButton.setOnClickListener(v -> navigateTo(ChatActivity.class));
+        messagesButton.setOnClickListener(v -> navigateTo(MessagesActivity.class));
     }
 
     protected void navigateTo(Class<?> targetActivity) {
