@@ -102,21 +102,16 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
         void bind(DatabaseMessage message, int position) {
             messageText.setText(message.getText());
             dateTime.setText(message.getFormattedTimestamp());
-
-            // Set read receipt icon based on message read status.
-            if (message.isRead()) {
-                readReceiptIcon.setImageResource(R.drawable.ic_read);
-            } else {
-                readReceiptIcon.setImageResource(R.drawable.ic_unread);
-            }
-
-            // Show/hide copy buttons based on message properties.
             copyEmailButton.setVisibility(message.isSendEmail() ? View.VISIBLE : View.GONE);
             copyPhoneButton.setVisibility(message.isSendPhoneNumber() ? View.VISIBLE : View.GONE);
-
             boolean isSent = message.getSenderId().equals(currentUserId);
-
             if (isSent) {
+                readReceiptIcon.setVisibility(View.VISIBLE);
+                if (message.isRead()) {
+                    readReceiptIcon.setImageResource(R.drawable.ic_read);
+                } else {
+                    readReceiptIcon.setImageResource(R.drawable.ic_unread);
+                }
                 profileIconLeft.setVisibility(View.GONE);
                 if (shouldShowProfile(position)) {
                     profileIconRight.setVisibility(View.VISIBLE);
@@ -127,6 +122,7 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
                 rootLayout.setGravity(Gravity.END);
                 dateTime.setGravity(Gravity.END);
             } else {
+                readReceiptIcon.setVisibility(View.GONE);
                 profileIconRight.setVisibility(View.GONE);
                 if (shouldShowProfile(position)) {
                     profileIconLeft.setVisibility(View.VISIBLE);
@@ -136,11 +132,9 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
                 }
                 rootLayout.setGravity(Gravity.START);
                 dateTime.setGravity(Gravity.START);
-                readReceiptIcon.setVisibility(View.GONE);
             }
         }
 
-        // Returns true if this message is the first in a block of consecutive messages from the same sender.
         private boolean shouldShowProfile(int position) {
             if (position == 0) {
                 return true;

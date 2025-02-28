@@ -48,9 +48,10 @@ public class DatabaseMessagesAdapter extends RecyclerView.Adapter<DatabaseMessag
         DatabaseMessage current = messageList.get(position);
         holder.tvLastMessage.setText(current.getText());
         holder.tvTimestamp.setText(current.getFormattedTimestamp());
-        if (current.isUnreadFor(currentUserId)) {
+        int unreadCount = current.getConversationUnreadCount();
+        if (unreadCount > 0) {
             holder.tvUnreadCount.setVisibility(View.VISIBLE);
-            holder.tvUnreadCount.setText("1");
+            holder.tvUnreadCount.setText(String.valueOf(unreadCount));
         } else {
             holder.tvUnreadCount.setVisibility(View.GONE);
         }
@@ -118,6 +119,7 @@ public class DatabaseMessagesAdapter extends RecyclerView.Adapter<DatabaseMessag
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);
             intent.putExtra("item_id", itemId);
+            intent.putExtra("other_user", otherPersonId);
             context.startActivity(intent);
         });
     }

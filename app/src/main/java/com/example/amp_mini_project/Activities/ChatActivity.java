@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseMessage;
 import com.example.amp_mini_project.Firebase.DatabaseChatAdapter;
+import com.example.amp_mini_project.Helpers.MessageHelper;
 import com.example.amp_mini_project.Helpers.MyApp;
 import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
@@ -35,11 +36,8 @@ public class ChatActivity extends AppCompatActivity {
     private CheckBox sendPhoneCheckbox, sendEmailCheckbox;
     private DatabaseChatAdapter chatAdapter;
     private List<DatabaseMessage> messageList;
-
-    private String currentUserId;
-
-    private DatabaseItem currentItem;
-    private String currentItemKey;
+    private String currentUserId, currentItemKey, otherUserId;
+    private boolean isChatActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +54,7 @@ public class ChatActivity extends AppCompatActivity {
         currentUserId = app.getUserId();
 
         currentItemKey = getIntent().getStringExtra("item_id");
+        otherUserId = getIntent().getStringExtra("other_user");
 
         if (currentItemKey != null) {
             loadItemDetails(currentItemKey);
@@ -72,14 +71,11 @@ public class ChatActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String text = chatInput.getText().toString().trim();
-                if (text.isEmpty() || currentItem == null) {
-                    return;
-                }
+                if (text.isEmpty()) { return; }
                 DatabaseMessage message = new DatabaseMessage(
                         currentUserId,
-                        currentItem.getUploaderId(),
+                        otherUserId,
                         currentItemKey,
                         text,
                         System.currentTimeMillis(),
@@ -101,13 +97,39 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    private MessageHelper.MessageUpdateListener messageUpdateListener = updatedMessage -> {
+        for (int i = 0; i < messageList.size(); i++) {
+            if (messageList.get(i).getKey().equals(updatedMessage.getKey())) {
+                messageList.set(i, updatedMessage);
+                chatAdapter.notifyItemChanged(i);
+                break;
+            }
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MessageHelper.getInstance().addListener(messageUpdateListener);
+        MessageHelper.getInstance().startListening(currentItemKey);
+        isChatActive = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MessageHelper.getInstance().removeListener(messageUpdateListener);
+        MessageHelper.getInstance().stopListening();
+        isChatActive = false;
+    }
+
     private void loadItemDetails(String itemKey) {
         DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("entries").child(itemKey);
         itemRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    currentItem = snapshot.getValue(DatabaseItem.class);
+                    DatabaseItem currentItem = snapshot.getValue(DatabaseItem.class);
                     if (currentItem != null) {
                         currentItem.setKey(snapshot.getKey());
                         TextView itemName = findViewById(R.id.item_name);
@@ -134,19 +156,20 @@ public class ChatActivity extends AppCompatActivity {
                 messageList.clear();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     DatabaseMessage message = child.getValue(DatabaseMessage.class);
+                    message.setKey(child.getKey());
                     if (message != null && message.getItemId().equals(currentItemKey)) {
                         boolean currentUserInvolved =
                                 currentUserId.equals(message.getSenderId()) ||
                                         currentUserId.equals(message.getReceiverId());
                         if (currentUserInvolved) {
                             messageList.add(message);
-
-                            if (message.isUnreadFor(currentUserId)) {
+                            if (message.isUnreadFor(currentUserId) && isChatActive) {
                                 child.getRef().child("read").setValue(true);
                             }
                         }
                     }
                 }
+                messageList.sort((m1, m2) -> Long.compare(m2.getTimestamp(), m1.getTimestamp()));
                 chatAdapter.setMessages(messageList);
                 if (!messageList.isEmpty()) {
                     chatRecyclerView.scrollToPosition(messageList.size() - 1);

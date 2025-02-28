@@ -149,7 +149,8 @@ public class ContactActivity extends AppCompatActivity {
                     hideLoadingOverlay();
                     if (task.isSuccessful()) {
                         Toast.makeText(ContactActivity.this, "Message sent", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ContactActivity.this, ProfileActivity.class);
+                        Intent intent = new Intent(ContactActivity.this, ChatActivity.class);
+                        intent.putExtra("item_id", currentItemKey);
                         startActivity(intent);
                         finish();
                     } else {

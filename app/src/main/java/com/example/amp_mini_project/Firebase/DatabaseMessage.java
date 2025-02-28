@@ -1,7 +1,6 @@
 package com.example.amp_mini_project.Firebase;
 
 public class DatabaseMessage {
-
     private String senderId;
     private String receiverId;
     private String itemId;
@@ -10,6 +9,10 @@ public class DatabaseMessage {
     private boolean read;
     private boolean sendPhoneNumber;
     private boolean sendEmail;
+    private int conversationUnreadCount = 0;
+
+    private String key;
+
 
     public DatabaseMessage() {
     }
@@ -50,6 +53,12 @@ public class DatabaseMessage {
     public boolean isSendEmail() {
         return sendEmail;
     }
+    public String getKey() {
+        return key;
+    }
+    public int getConversationUnreadCount() {
+        return conversationUnreadCount;
+    }
 
     public void setReceiverId(String receiverId) {
         this.receiverId = receiverId;
@@ -75,21 +84,25 @@ public class DatabaseMessage {
     public void setSendEmail(boolean sendEmail) {
         this.sendEmail = sendEmail;
     }
-
     public String getFormattedTimestamp() {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM d, HH:mm");
         return sdf.format(new java.util.Date(timestamp));
     }
 
-    public boolean isUnreadFor(String currentUserId) {
-        return !read && receiverId.equals(currentUserId);
+    public void setConversationUnreadCount(int count) {
+        this.conversationUnreadCount = count;
     }
-
+    public void setKey(String key) {
+        this.key = key;
+    }
     public String getOtherPersonId(String currentUserId) {
         if (senderId.equals(currentUserId)) {
             return receiverId;
         } else {
             return senderId;
         }
+    }
+    public boolean isUnreadFor(String currentUserId) {
+        return !read && receiverId.equals(currentUserId);
     }
 }

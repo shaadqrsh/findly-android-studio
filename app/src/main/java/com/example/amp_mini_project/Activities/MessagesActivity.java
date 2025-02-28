@@ -24,7 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class MessagesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseMessagesAdapter adapter;
     private List<DatabaseMessage> messageList = new ArrayList<>();
-
+    private LinearLayout loadingOverlay;
     private String currentUserId;
 
     @Override
@@ -41,6 +43,8 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setVisibility(View.GONE);
+        loadingOverlay = findViewById(R.id.loading_overlay);
+        loadingOverlay.setVisibility(View.VISIBLE);
         setupBottomNavigation();
         MyApp app = (MyApp) getApplication();
         currentUserId = app.getUserId();
@@ -53,28 +57,52 @@ public class MessagesActivity extends AppCompatActivity {
 
     private void fetchMessages() {
         DatabaseReference messagesRef = FirebaseDatabase.getInstance().getReference("messages");
+
         messagesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageList.clear();
+                Map<String, DatabaseMessage> lastMessageMap = new HashMap<>();
+                Map<String, Integer> unreadCountMap = new HashMap<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     DatabaseMessage dbMsg = child.getValue(DatabaseMessage.class);
                     if (dbMsg != null) {
-                        String senderId = dbMsg.getSenderId();
-                        String receiverId = dbMsg.getReceiverId();
-                        if (currentUserId.equals(senderId) || currentUserId.equals(receiverId)) {
-                            messageList.add(dbMsg);
+                        boolean involved = currentUserId.equals(dbMsg.getSenderId())
+                                || currentUserId.equals(dbMsg.getReceiverId());
+                        if (!involved) {
+                            continue;
+                        }
+                        String conversationKey = dbMsg.getOtherPersonId(currentUserId) + "_" + dbMsg.getItemId();
+                        int unreadSoFar = unreadCountMap.containsKey(conversationKey)
+                                ? unreadCountMap.get(conversationKey)
+                                : 0;
+                        if (dbMsg.isUnreadFor(currentUserId)) {
+                            unreadSoFar++;
+                        }
+                        unreadCountMap.put(conversationKey, unreadSoFar);
+                        DatabaseMessage existing = lastMessageMap.get(conversationKey);
+                        if (existing == null || dbMsg.getTimestamp() > existing.getTimestamp()) {
+                            lastMessageMap.put(conversationKey, dbMsg);
                         }
                     }
                 }
+                messageList.clear();
+                for (String key : lastMessageMap.keySet()) {
+                    DatabaseMessage lastMsg = lastMessageMap.get(key);
+                    int totalUnread = unreadCountMap.get(key);
+                    lastMsg.setConversationUnreadCount(totalUnread);
+                    messageList.add(lastMsg);
+                }
+                messageList.sort((m1, m2) -> Long.compare(m2.getTimestamp(), m1.getTimestamp()));
                 adapter.notifyDataSetChanged();
+                loadingOverlay.setVisibility(View.GONE);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                loadingOverlay.setVisibility(View.GONE);
+            }
         });
     }
-
 
     protected void setupBottomNavigation() {
         LinearLayout lostButton = findViewById(R.id.button_lost);

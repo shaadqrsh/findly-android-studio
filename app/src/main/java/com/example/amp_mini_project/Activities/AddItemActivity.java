@@ -52,7 +52,6 @@ public class AddItemActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("entries");
 
-        // Bind views
         etName = findViewById(R.id.et_name);
         etDescription = findViewById(R.id.et_description);
         spinnerCategory = findViewById(R.id.spinner_category);
@@ -65,14 +64,11 @@ public class AddItemActivity extends AppCompatActivity {
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setVisibility(View.GONE);
 
-        // Firebase Storage reference
         storageReference = FirebaseStorage.getInstance().getReference("item_images");
 
-        // Bind image preview and upload button
         imgPreview = findViewById(R.id.img_preview);
         btnUploadImage = findViewById(R.id.btn_upload_image);
 
-        // Get item type from intent extras
         Intent intent = getIntent();
         itemType = intent.getIntExtra("itemType", 0);
 
