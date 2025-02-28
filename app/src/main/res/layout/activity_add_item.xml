@@ -29,7 +29,7 @@
             android:layout_marginTop="16dp"
             android:contentDescription="Image Preview"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_placeholder" />
+            android:src="@drawable/ic_placeholder" />
 
         <Button
             android:id="@+id/btn_upload_image"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/myPrimary"
             android:text="Upload Image"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/myWhite" />
 
         <EditText
             android:id="@+id/et_name"
@@ -117,7 +117,7 @@
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/myPrimary"
             android:text="Submit"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/myWhite" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/loading_overlay"

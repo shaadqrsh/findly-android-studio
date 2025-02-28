@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_placeholder" />
+            android:src="@drawable/ic_placeholder" />
 
         <!-- Upload Image Button (only visible in edit mode) -->
         <Button
@@ -29,7 +29,7 @@
             android:text="Upload Image"
             android:textAllCaps="false"
             android:backgroundTint="@color/myPrimary"
-            android:textColor="@android:color/white"
+            android:textColor="@color/myWhite"
             android:visibility="gone" />
 
 
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/myBlack"
             android:layout_marginBottom="4dp"
             android:lineSpacingExtra="4dp" />
 
@@ -113,7 +113,7 @@
                     android:id="@+id/profile_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/my_placeholder"
+                    android:src="@drawable/ic_placeholder"
                     android:layout_marginEnd="8dp"
                     android:contentDescription="Profile Icon" />
 
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/myBlack" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                     android:id="@+id/upload_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/myBlack"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -172,7 +172,7 @@
             android:backgroundTint="@color/myPrimary"
             android:text="Edit"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="@color/myWhite"
             android:visibility="gone"
             android:layout_marginBottom="8dp" />
 
@@ -184,7 +184,7 @@
             android:backgroundTint="@color/myPrimary"
             android:text="Contact"
             android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/myWhite" />
 
         <!-- Mark as Open Button (for uploader, if desired) -->
         <Button
@@ -194,7 +194,7 @@
             android:backgroundTint="@color/myPrimary"
             android:text="Mark as Open"
             android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/myWhite" />
 
     </LinearLayout>
 

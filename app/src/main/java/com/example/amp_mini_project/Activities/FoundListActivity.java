@@ -24,11 +24,11 @@ public class FoundListActivity extends ListActivity {
 
         // Change text color of the TextView
         TextView textView = findViewById(R.id.text_found);
-        textView.setTextColor(getResources().getColor(R.color.black));
+        textView.setTextColor(getResources().getColor(R.color.myBlack));
 
         // Optionally modify the ImageView tint or resource
         ImageView imageView = findViewById(R.id.icon_found);
-        imageView.setColorFilter(getResources().getColor(R.color.black));
+        imageView.setColorFilter(getResources().getColor(R.color.myBlack));
         button.setOnClickListener(null);
     }
 }

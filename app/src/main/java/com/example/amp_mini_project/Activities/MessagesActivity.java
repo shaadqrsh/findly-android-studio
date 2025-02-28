@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amp_mini_project.Firebase.DatabaseMessage;
-import com.example.amp_mini_project.Firebase.DatabaseMessagesAdapter;
+import com.example.amp_mini_project.Firebase.DatabaseMessageAdapter;
 import com.example.amp_mini_project.Helpers.MyApp;
 import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +32,7 @@ public class MessagesActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private DatabaseMessagesAdapter adapter;
+    private DatabaseMessageAdapter adapter;
     private List<DatabaseMessage> messageList = new ArrayList<>();
     private LinearLayout loadingOverlay;
     private String currentUserId;
@@ -50,7 +50,7 @@ public class MessagesActivity extends AppCompatActivity {
         currentUserId = app.getUserId();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DatabaseMessagesAdapter(this, messageList, currentUserId);
+        adapter = new DatabaseMessageAdapter(this, messageList, currentUserId);
         recyclerView.setAdapter(adapter);
         fetchMessages();
     }
@@ -119,10 +119,10 @@ public class MessagesActivity extends AppCompatActivity {
         messagesButton.setBackgroundColor(getColor(R.color.mySecondary));
 
         TextView textView = findViewById(R.id.text_messages);
-        textView.setTextColor(getResources().getColor(R.color.black));
+        textView.setTextColor(getResources().getColor(R.color.myBlack));
 
         ImageView imageView = findViewById(R.id.icon_messages);
-        imageView.setColorFilter(getResources().getColor(R.color.black));
+        imageView.setColorFilter(getResources().getColor(R.color.myBlack));
     }
 
     protected void navigateTo(Class<?> targetActivity) {

@@ -71,8 +71,8 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
             Glide.with(context)
                     .load(item.getImageUrl())
                     .apply(new RequestOptions()
-                            .placeholder(R.drawable.my_placeholder)
-                            .error(R.drawable.my_error))
+                            .placeholder(R.drawable.ic_placeholder)
+                            .error(R.drawable.ic_error))
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -89,7 +89,7 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
                     .into(holder.itemImage);
         } else {
             holder.imageLoadingProgress.setVisibility(View.GONE);
-            holder.itemImage.setImageResource(R.drawable.my_placeholder);
+            holder.itemImage.setImageResource(R.drawable.ic_placeholder);
         }
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ItemDetailActivity.class);

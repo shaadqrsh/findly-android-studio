@@ -31,7 +31,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/my_placeholder"
+                android:src="@drawable/ic_placeholder"
                 android:layout_marginEnd="8dp" />
 
             <!-- Right: Item info divided in two parts -->
@@ -100,7 +100,7 @@
                     android:id="@+id/profile_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/my_placeholder"
+                    android:src="@drawable/ic_placeholder"
                     android:contentDescription="Profile Icon"
                     android:layout_marginEnd="8dp" />
 
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:text="User Name"
                         android:textSize="14sp"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/myBlack" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="Date and Time"
                     android:textSize="14sp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@color/myBlack" />
             </LinearLayout>
         </LinearLayout>
 

@@ -304,10 +304,10 @@ public class ProfileActivity extends AppCompatActivity {
         profileButton.setBackgroundColor(getColor(R.color.mySecondary));
 
         TextView textView = findViewById(R.id.text_profile);
-        textView.setTextColor(getResources().getColor(R.color.black));
+        textView.setTextColor(getResources().getColor(R.color.myBlack));
 
         ImageView imageView = findViewById(R.id.icon_profile);
-        imageView.setColorFilter(getResources().getColor(R.color.black));
+        imageView.setColorFilter(getResources().getColor(R.color.myBlack));
     }
 
     protected void navigateTo(Class<?> targetActivity) {

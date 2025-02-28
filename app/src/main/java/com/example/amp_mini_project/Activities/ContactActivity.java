@@ -88,8 +88,8 @@ public class ContactActivity extends AppCompatActivity {
                             Glide.with(ContactActivity.this)
                                     .load(currentImageUrl)
                                     .apply(new RequestOptions()
-                                            .placeholder(R.drawable.my_placeholder)
-                                            .error(R.drawable.my_error))
+                                            .placeholder(R.drawable.ic_placeholder)
+                                            .error(R.drawable.ic_error))
                                     .into(itemImage);
                         }
                         currentItem.getUserData(DatabaseUser.key_name, "Unknown User", new UserDataCallback() {
@@ -105,8 +105,8 @@ public class ContactActivity extends AppCompatActivity {
                                 Glide.with(ContactActivity.this)
                                         .load(profileImage)
                                         .apply(new RequestOptions()
-                                                .placeholder(R.drawable.my_placeholder)
-                                                .error(R.drawable.my_error))
+                                                .placeholder(R.drawable.ic_placeholder)
+                                                .error(R.drawable.ic_error))
                                         .into(profileIcon);
                             }
                         });

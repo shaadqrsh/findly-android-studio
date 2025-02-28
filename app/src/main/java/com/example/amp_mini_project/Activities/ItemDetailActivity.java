@@ -176,8 +176,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                             Glide.with(ItemDetailActivity.this)
                                     .load(currentImageUrl)
                                     .apply(new RequestOptions()
-                                            .placeholder(R.drawable.my_placeholder)
-                                            .error(R.drawable.my_error))
+                                            .placeholder(R.drawable.ic_placeholder)
+                                            .error(R.drawable.ic_error))
                                     .listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
                                         @Override
                                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -213,8 +213,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                                 Glide.with(ItemDetailActivity.this)
                                         .load(profileImage)
                                         .apply(new RequestOptions()
-                                                .placeholder(R.drawable.my_placeholder)
-                                                .error(R.drawable.my_error))
+                                                .placeholder(R.drawable.ic_placeholder)
+                                                .error(R.drawable.ic_error))
                                         .into(profileIcon);
                                 isProfilePicLoaded = true;
                                 checkIfLoadingComplete();

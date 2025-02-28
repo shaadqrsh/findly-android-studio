@@ -32,7 +32,7 @@
                 android:layout_height="240dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/my_placeholder" />
+                android:src="@drawable/ic_placeholder" />
 
             <!-- Change Profile Picture -->
             <Button

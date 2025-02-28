@@ -156,12 +156,12 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
                             if (isSent) {
                                 Glide.with(context)
                                         .load(profileImageUrl)
-                                        .placeholder(R.drawable.my_placeholder)
+                                        .placeholder(R.drawable.ic_placeholder)
                                         .into(profileIconRight);
                             } else {
                                 Glide.with(context)
                                         .load(profileImageUrl)
-                                        .placeholder(R.drawable.my_placeholder)
+                                        .placeholder(R.drawable.ic_placeholder)
                                         .into(profileIconLeft);
                             }
                         }

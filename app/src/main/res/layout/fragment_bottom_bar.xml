@@ -28,7 +28,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_lost"
-                app:tint="@color/white" />
+                app:tint="@color/myWhite" />
 
             <TextView
                 android:id="@+id/text_lost"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Lost"
-                android:textColor="@color/white"
+                android:textColor="@color/myWhite"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -56,7 +56,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_found"
-                app:tint="@color/white" />
+                app:tint="@color/myWhite" />
 
             <TextView
                 android:id="@+id/text_found"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Found"
-                android:textColor="@color/white"
+                android:textColor="@color/myWhite"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_mine"
-                app:tint="@color/white" />
+                app:tint="@color/myWhite" />
 
             <TextView
                 android:id="@+id/text_mine"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Mine"
-                android:textColor="@color/white"
+                android:textColor="@color/myWhite"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -112,7 +112,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_profile"
-                app:tint="@color/white" />
+                app:tint="@color/myWhite" />
 
             <TextView
                 android:id="@+id/text_profile"
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Profile"
-                android:textColor="@color/white"
+                android:textColor="@color/myWhite"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -140,7 +140,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_messages"
-                app:tint="@color/white" />
+                app:tint="@color/myWhite" />
 
             <TextView
                 android:id="@+id/text_messages"
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Messages"
-                android:textColor="@color/white"
+                android:textColor="@color/myWhite"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>

@@ -23,7 +23,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/myWhite"/>
 
         <!-- Item Name -->
         <TextView
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Item Name"
-            android:textColor="@color/white"
+            android:textColor="@color/myWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -68,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:backgroundTint="@color/myPrimary"
             android:text="Send" />
 
     </LinearLayout>

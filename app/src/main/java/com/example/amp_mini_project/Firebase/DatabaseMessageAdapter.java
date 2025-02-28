@@ -21,15 +21,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class DatabaseMessagesAdapter extends RecyclerView.Adapter<DatabaseMessagesAdapter.MessagesViewHolder> {
+public class DatabaseMessageAdapter extends RecyclerView.Adapter<DatabaseMessageAdapter.MessagesViewHolder> {
 
     private final Context context;
     private final List<DatabaseMessage> messageList;
     private final String currentUserId;
 
-    public DatabaseMessagesAdapter(Context context,
-                                   List<DatabaseMessage> messageList,
-                                   String currentUserId) {
+    public DatabaseMessageAdapter(Context context,
+                                  List<DatabaseMessage> messageList,
+                                  String currentUserId) {
         this.context = context;
         this.messageList = messageList;
         this.currentUserId = currentUserId;
@@ -73,11 +73,11 @@ public class DatabaseMessagesAdapter extends RecyclerView.Adapter<DatabaseMessag
                                     .load(dbItem.getImageUrl())
                                     .into(holder.ivItemImage);
                         } else {
-                            holder.ivItemImage.setImageResource(R.drawable.my_placeholder);
+                            holder.ivItemImage.setImageResource(R.drawable.ic_placeholder);
                         }
                     } else {
                         holder.tvItemName.setText("Unknown Item");
-                        holder.ivItemImage.setImageResource(R.drawable.my_placeholder);
+                        holder.ivItemImage.setImageResource(R.drawable.ic_placeholder);
                     }
                 }
 
@@ -88,14 +88,14 @@ public class DatabaseMessagesAdapter extends RecyclerView.Adapter<DatabaseMessag
             });
         } else {
             holder.tvItemName.setText("No Item");
-            holder.ivItemImage.setImageResource(R.drawable.my_placeholder);
+            holder.ivItemImage.setImageResource(R.drawable.ic_placeholder);
         }
         String otherPersonId = current.getOtherPersonId(currentUserId);
         if (otherPersonId != null && !otherPersonId.isEmpty()) {
             DatabaseReference userRef = FirebaseDatabase.getInstance()
                     .getReference("users")
                     .child(otherPersonId)
-                    .child("displayName");
+                    .child("name");
 
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

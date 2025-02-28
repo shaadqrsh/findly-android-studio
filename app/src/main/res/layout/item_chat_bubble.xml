@@ -14,7 +14,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/my_placeholder" />
+        android:src="@drawable/ic_placeholder" />
 
     <!-- Chat Bubble Container with a minWidth so it can at least display the timestamp -->
     <LinearLayout
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Message goes here"
             android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/myBlack" />
 
         <!-- Buttons Row: Copy Email and Copy Phone Number -->
         <LinearLayout
@@ -80,7 +80,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/my_placeholder"
+                android:src="@drawable/ic_placeholder"
                 android:contentDescription="Read Receipt" />
         </LinearLayout>
     </LinearLayout>
@@ -92,5 +92,5 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/my_placeholder" />
+        android:src="@drawable/ic_placeholder" />
 </LinearLayout>
