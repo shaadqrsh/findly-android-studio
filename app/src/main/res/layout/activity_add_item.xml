@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/myWhite"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activities.AddItemActivity">
 
@@ -123,7 +124,7 @@
         android:id="@+id/loading_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80000000"
+        android:background="@color/loading"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible">

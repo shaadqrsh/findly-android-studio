@@ -7,7 +7,8 @@
     android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
-    android:padding="16dp">
+    android:padding="16dp"
+    app:cardBackgroundColor="@color/myWhite">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

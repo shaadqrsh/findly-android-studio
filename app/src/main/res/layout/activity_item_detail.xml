@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/myWhite"
     tools:context=".Activities.ItemDetailActivity">
 
     <LinearLayout
@@ -203,7 +204,7 @@
         android:id="@+id/loading_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80000000"
+        android:background="@color/loading"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible">

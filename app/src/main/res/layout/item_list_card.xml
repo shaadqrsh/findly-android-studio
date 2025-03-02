@@ -1,9 +1,9 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/myWhite"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Image container with loading overlay -->
         <FrameLayout
+            android:id="@id/item_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:id="@id/item_image"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp">
@@ -26,8 +25,8 @@
                 android:id="@+id/itemImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_placeholder"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_placeholder" />
 
             <!-- Loading overlay -->
             <ProgressBar
@@ -43,8 +42,8 @@
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/item_image"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/item_image"
             android:text="Name"
             android:textColor="@color/myPrimary"
             android:textSize="18sp"
@@ -66,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemName"
-            android:layout_toEndOf="@id/item_image"
             android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/item_image"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -95,6 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date"
+                    android:textColor="@color/myGray"
                     android:textSize="14sp" />
 
                 <!-- Spacer -->
@@ -108,6 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time"
+                    android:textColor="@color/myBlack"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

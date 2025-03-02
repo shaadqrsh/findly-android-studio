@@ -28,5 +28,6 @@
         android:layout_weight="0"
         android:iconifiedByDefault="true"
         android:queryHint="Search (title/category)"
-        android:visibility="visible" />
+        android:visibility="visible"
+        style="@style/CustomSearchViewStyle" />
 </LinearLayout>

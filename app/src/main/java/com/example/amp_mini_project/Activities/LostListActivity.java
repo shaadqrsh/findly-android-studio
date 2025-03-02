@@ -23,9 +23,9 @@ public class LostListActivity extends ListActivity {
         LinearLayout button = findViewById(R.id.button_lost);
         button.setBackgroundColor(getColor(R.color.mySecondary));
         TextView textView = findViewById(R.id.text_lost);
-        textView.setTextColor(getResources().getColor(R.color.myBlack));
+        textView.setTextColor(getResources().getColor(R.color.myPrimary));
         ImageView imageView = findViewById(R.id.icon_lost);
-        imageView.setColorFilter(getResources().getColor(R.color.myBlack));
+        imageView.setColorFilter(getResources().getColor(R.color.myPrimary));
         button.setOnClickListener(null);
     }
 

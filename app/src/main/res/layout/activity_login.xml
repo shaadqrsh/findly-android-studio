@@ -4,9 +4,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="@color/myWhite"
     tools:context=".Activities.LoginActivity">
 
     <ImageView
@@ -28,10 +28,6 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Username Field -->
-
-    <!-- Password Field -->
-
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -39,7 +35,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:backgroundTint="#000"
         android:hint="Username"
         android:inputType="text" />
 
@@ -50,7 +45,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:backgroundTint="#000"
         android:hint="Password"
         android:inputType="textPassword" />
 
@@ -64,7 +58,7 @@
         android:layout_marginRight="16dp"
         android:backgroundTint="@color/myPrimary"
         android:text="Login"
-        android:textColor="#FFF" />
+        android:textColor="@color/myWhite" />
 
     <!-- Create Account Text -->
     <TextView

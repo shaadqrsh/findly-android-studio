@@ -23,10 +23,10 @@ public class MineListActivity extends ListActivity {
         button.setBackgroundColor(getColor(R.color.mySecondary));
 
         TextView textView = findViewById(R.id.text_mine);
-        textView.setTextColor(getResources().getColor(R.color.myBlack));
+        textView.setTextColor(getResources().getColor(R.color.myPrimary));
 
         ImageView imageView = findViewById(R.id.icon_mine);
-        imageView.setColorFilter(getResources().getColor(R.color.myBlack));
+        imageView.setColorFilter(getResources().getColor(R.color.myPrimary));
         button.setOnClickListener(null);
     }
 }
