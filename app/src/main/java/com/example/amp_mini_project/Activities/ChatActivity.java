@@ -1,18 +1,26 @@
 package com.example.amp_mini_project.Activities;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseMessage;
 import com.example.amp_mini_project.Firebase.DatabaseChatAdapter;
@@ -26,6 +34,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +47,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button sendButton;
     private CheckBox sendPhoneCheckbox, sendEmailCheckbox;
     private DatabaseChatAdapter chatAdapter;
+    private ImageView itemImage;
     private List<DatabaseMessage> messageList;
     private String currentUserId, currentItemKey, otherUserId;
     private boolean isChatActive = false;
@@ -51,6 +62,7 @@ public class ChatActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.send_button);
         sendPhoneCheckbox = findViewById(R.id.send_phone_checkbox);
         sendEmailCheckbox = findViewById(R.id.send_email_checkbox);
+        itemImage = findViewById(R.id.item_image);
 
         MyApp app = (MyApp) getApplication();
         currentUserId = app.getUserId();
@@ -138,11 +150,31 @@ public class ChatActivity extends AppCompatActivity {
                         currentItem.getUserData(DatabaseUser.key_name, "Unknown User", new UserDataCallback() {
                             @Override
                             public void onUserDataRetrieved(String name) {
-                                itemName.setText(currentItem.getName() + "(" + name + ")");
+                                itemName.setText(currentItem.getName() + " (" + name + ")");
                             }
                         });
                         itemName.setText(currentItem.getName());
-                        loadMessages();
+                        if(currentItem.getImageUrl() != null && !currentItem.getImageUrl().isEmpty()) {
+                            String imageUrl = currentItem.getImageUrl();
+                            Glide.with(ChatActivity.this)
+                                    .load(imageUrl)
+                                    .apply(new RequestOptions()
+                                            .placeholder(R.drawable.ic_placeholder)
+                                            .error(R.drawable.ic_error))
+                                    .listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            return false;
+                                        }
+                                    })
+                                    .into(itemImage);
+                            loadMessages();
+                        }
                     }
                 } else {
                     Toast.makeText(ChatActivity.this, "Item not found", Toast.LENGTH_SHORT).show();

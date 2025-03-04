@@ -170,7 +170,6 @@ public class ItemDetailActivity extends AppCompatActivity {
                         int spinnerPosition = adapter.getPosition(currentItem.getCategory());
                         itemCategorySpinner.setSelection(spinnerPosition);
 
-                        // Load the item image and store the current image URL
                         if(currentItem.getImageUrl() != null && !currentItem.getImageUrl().isEmpty()){
                             currentImageUrl = currentItem.getImageUrl();
                             Glide.with(ItemDetailActivity.this)
@@ -207,7 +206,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                             }
                         });
 
-                        currentItem.getUserData("profileImage", "", new UserDataCallback() {
+                        currentItem.getUserData("profileUri", "", new UserDataCallback() {
                             @Override
                             public void onUserDataRetrieved(String profileImage) {
                                 Glide.with(ItemDetailActivity.this)

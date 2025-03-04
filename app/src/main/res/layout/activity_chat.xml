@@ -22,11 +22,10 @@
             android:id="@+id/item_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_placeholder"
-            android:tint="@color/myWhite"/>
+            android:src="@drawable/ic_placeholder_2" />
 
         <!-- Item Name -->
         <TextView
@@ -93,7 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/drawable_textview"
-            android:hint="Type your message" />
+            android:hint="Type your message"
+            android:textColor="@color/myBlack" />
 
         <!-- Send Button -->
 
