@@ -72,13 +72,11 @@ public class AddItemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         itemType = intent.getIntExtra("itemType", 0);
 
-        // Setup spinner adapter
         String[] categories = getResources().getStringArray(R.array.categories);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
-        // Set radio button selection based on itemType
         if (itemType == 0) {
             radioItem1.setChecked(true);
         } else if (itemType == 1) {
@@ -87,9 +85,9 @@ public class AddItemActivity extends AppCompatActivity {
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radio_lost) {
-                itemType = 0; // Lost
+                itemType = 0;
             } else if (checkedId == R.id.radio_found) {
-                itemType = 1; // Found
+                itemType = 1;
             }
         });
 

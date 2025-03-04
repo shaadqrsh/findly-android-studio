@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.amp_mini_project.Firebase.DatabaseItem;
 import com.example.amp_mini_project.Firebase.DatabaseMessage;
 import com.example.amp_mini_project.Firebase.DatabaseChatAdapter;
+import com.example.amp_mini_project.Firebase.DatabaseUser;
 import com.example.amp_mini_project.Helpers.MessageHelper;
 import com.example.amp_mini_project.Helpers.MyApp;
+import com.example.amp_mini_project.Helpers.UserDataCallback;
 import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -133,6 +135,12 @@ public class ChatActivity extends AppCompatActivity {
                     if (currentItem != null) {
                         currentItem.setKey(snapshot.getKey());
                         TextView itemName = findViewById(R.id.item_name);
+                        currentItem.getUserData(DatabaseUser.key_name, "Unknown User", new UserDataCallback() {
+                            @Override
+                            public void onUserDataRetrieved(String name) {
+                                itemName.setText(currentItem.getName() + "(" + name + ")");
+                            }
+                        });
                         itemName.setText(currentItem.getName());
                         loadMessages();
                     }

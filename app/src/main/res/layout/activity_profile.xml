@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/myPrimary"
-            android:text="Change Profile Picture" />
+            android:text="Change Profile Picture"
+            android:textColor="@color/myWhite" />
 
         <!-- Username (Not Editable) -->
         <TextView
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Username"
+            android:textColor="@color/myPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -53,14 +55,18 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Name"
+            android:textColor="@color/myBlack"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/drawable_textview"
             android:hint="Enter Name"
             android:padding="8dp"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"
             android:visibility="gone" />
 
         <!-- Email -->
@@ -71,15 +77,18 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Email"
+            android:textColor="@color/myBlack"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/drawable_textview"
             android:hint="Enter Email"
             android:padding="8dp"
-            android:textColor="@color/myWhite"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"
             android:visibility="gone" />
 
         <!-- Phone -->
@@ -89,14 +98,18 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Phone"
+            android:textColor="@color/myBlack"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/phoneEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/drawable_textview"
             android:hint="Enter Phone"
             android:padding="8dp"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"
             android:visibility="gone" />
 
         <!-- Edit/Submit Button -->
@@ -107,7 +120,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/myPrimary"
-            android:text="Edit" />
+            android:text="Edit"
+            android:textColor="@color/myWhite" />
 
     </LinearLayout>
 

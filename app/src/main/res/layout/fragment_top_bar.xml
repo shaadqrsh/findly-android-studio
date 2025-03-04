@@ -6,7 +6,6 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <!-- App Name -->
     <TextView
         android:id="@+id/app_name"
         android:layout_width="0dp"
@@ -20,14 +19,13 @@
         android:textSize="20sp"
         android:visibility="visible" />
 
-    <!-- Search View -->
     <SearchView
         android:id="@+id/searchView"
+        style="@android:style/Widget.Material.Light.SearchView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:iconifiedByDefault="true"
         android:queryHint="Search (title/category)"
-        android:visibility="visible"
-        style="@style/CustomSearchViewStyle" />
+        android:visibility="visible" />
 </LinearLayout>

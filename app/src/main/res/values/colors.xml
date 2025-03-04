@@ -2,9 +2,9 @@
 <resources>
     <color name="myBlack">#FF000000</color>
     <color name="myWhite">#FFFFFFFF</color>
-    <color name="myGray">#AAAAAAFF</color>
-    <color name="myPrimary">#0f6bac</color>
-    <color name="mySecondary">#85b7fe</color>
-    <color name="myTertiary">#c6ceff</color>
+    <color name="myGray">#AAAAAA</color>
+    <color name="myPrimary">#116754</color>
+    <color name="mySecondary">#00c39c</color>
+    <color name="myTertiary">#14f5af</color>
     <color name="loading">#80000000</color>
 </resources>

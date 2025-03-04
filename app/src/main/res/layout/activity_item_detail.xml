@@ -27,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/myPrimary"
             android:text="Upload Image"
             android:textAllCaps="false"
-            android:backgroundTint="@color/myPrimary"
             android:textColor="@color/myWhite"
             android:visibility="gone" />
 
@@ -48,7 +48,10 @@
             android:id="@+id/item_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/drawable_textview"
             android:hint="Edit item name"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"
             android:textSize="24sp"
             android:visibility="gone" />
 
@@ -57,9 +60,9 @@
             android:id="@+id/item_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/mySecondary"
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/item_category_spinner"
@@ -82,10 +85,13 @@
             android:id="@+id/item_description_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/drawable_textview"
             android:hint="Edit description"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"
             android:textSize="16sp"
-            android:visibility="gone"
-            android:lineSpacingExtra="4dp" />
+            android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"
@@ -129,8 +135,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Uploaded by"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/darker_gray" />
+                        android:textColor="@color/myGray"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/uploaded_by"
@@ -153,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Uploaded on"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/myGray"
                     android:textSize="12sp" />
 
                 <TextView

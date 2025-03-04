@@ -85,13 +85,13 @@ public class DatabaseItem {
         Date date = new Date(uploadTime);
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.format(date);
+        return ""; //dateFormat.format(date);
     }
 
     public String displayTime() {
         Date date = new Date(uploadTime);
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat timeFormat = new java.text.SimpleDateFormat("MMM d, HH:mm");
         return timeFormat.format(date);
     }
 
