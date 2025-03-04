@@ -1,6 +1,5 @@
 package com.example.amp_mini_project.Activities;
 
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;

@@ -7,6 +7,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,6 +94,9 @@ public class ListActivity extends AppCompatActivity {
                 filteredList.addAll(itemList);
                 adapter.notifyDataSetChanged();
                 hideLoadingOverlay();
+                if(filteredList.isEmpty()){
+                    Toast.makeText(ListActivity.this, "No items found", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -163,6 +167,9 @@ public class ListActivity extends AppCompatActivity {
         }
 
         adapter.notifyDataSetChanged();
+        if (filteredList.isEmpty()) {
+            Toast.makeText(ListActivity.this, "No items found", Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void setupBottomNavigation()

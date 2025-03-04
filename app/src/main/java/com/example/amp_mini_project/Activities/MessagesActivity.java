@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,6 +93,9 @@ public class MessagesActivity extends AppCompatActivity {
                 }
                 messageList.sort((m1, m2) -> Long.compare(m2.getTimestamp(), m1.getTimestamp()));
                 adapter.notifyDataSetChanged();
+                if(messageList.isEmpty()){
+                    Toast.makeText(MessagesActivity.this, "No conversations found", Toast.LENGTH_SHORT).show();
+                }
                 loadingOverlay.setVisibility(View.GONE);
             }
 
