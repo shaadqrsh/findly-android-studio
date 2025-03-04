@@ -42,8 +42,11 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
+            android:background="@drawable/drawable_textview"
             android:hint="First Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray" />
 
         <EditText
             android:id="@+id/last_name"
@@ -53,7 +56,10 @@
             android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:hint="Last Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/drawable_textview"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGray"/>
     </LinearLayout>
 
     <EditText
@@ -64,7 +70,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="8dp"
         android:hint="Phone Number"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:background="@drawable/drawable_textview"
+        android:textColor="@color/myBlack"
+        android:textColorHint="@color/myGray" />
 
     <EditText
         android:id="@+id/email"
@@ -74,7 +83,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:background="@drawable/drawable_textview"
+        android:textColor="@color/myBlack"
+        android:textColorHint="@color/myGray"/>
 
     <EditText
         android:id="@+id/username"
@@ -84,7 +96,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:hint="Username"
-        android:inputType="text" />
+        android:inputType="text"
+        android:background="@drawable/drawable_textview"
+        android:textColor="@color/myBlack"
+        android:textColorHint="@color/myGray"/>
 
     <EditText
         android:id="@+id/password"
@@ -94,7 +109,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/drawable_textview"
+        android:textColor="@color/myBlack"
+        android:textColorHint="@color/myGray"/>
 
     <EditText
         android:id="@+id/confirm_password"
@@ -104,7 +122,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:hint="Confirm Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/drawable_textview"
+        android:textColor="@color/myBlack"
+        android:textColorHint="@color/myGray"/>
 
     <Button
         android:id="@+id/login_button"

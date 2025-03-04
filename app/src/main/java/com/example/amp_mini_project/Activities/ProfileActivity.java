@@ -3,6 +3,7 @@ package com.example.amp_mini_project.Activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -222,7 +223,7 @@ public class ProfileActivity extends AppCompatActivity {
             emailEditText.setError("Invalid email address");
             return;
         }
-        if (!updatedPhone.matches("^\\+?\\d{10,15}$")) {
+        if (!Patterns.PHONE.matcher(updatedPhone).matches()) {
             phoneEditText.setError("Phone number must be 10-15 digits long, optionally starting with '+'");
             return;
         }

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.amp_mini_project.Firebase.DatabaseUser;
+import com.example.amp_mini_project.Helpers.MyApp;
 import com.example.amp_mini_project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -165,6 +166,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         databaseReference.child(user).setValue(newUser).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(CreateAccountActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                MyApp app = (MyApp) getApplication();
+                app.setUserId(user);
                 Intent intent = new Intent(CreateAccountActivity.this, LostListActivity.class);
                 startActivity(intent);
             }
