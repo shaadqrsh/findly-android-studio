@@ -14,8 +14,7 @@ public class DatabaseMessage {
     private String key;
 
 
-    public DatabaseMessage() {
-    }
+    public DatabaseMessage() {}
 
     public DatabaseMessage(String senderId, String receiverId, String itemId, String text, long timestamp, boolean read, boolean sendPhoneNumber, boolean sendEmail) {
         this.senderId = senderId;

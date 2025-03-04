@@ -20,7 +20,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp">
 
-            <!-- Image placeholder -->
             <ImageView
                 android:id="@+id/itemImage"
                 android:layout_width="match_parent"
@@ -28,7 +27,6 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_placeholder" />
 
-            <!-- Loading overlay -->
             <ProgressBar
                 android:id="@+id/imageLoadingProgress"
                 android:layout_width="32dp"
@@ -37,7 +35,6 @@
                 android:visibility="visible" />
         </FrameLayout>
 
-        <!-- Item Name -->
         <TextView
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
@@ -49,7 +46,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Uploader Name -->
         <TextView
             android:id="@+id/uploaderName"
             android:layout_width="wrap_content"
@@ -60,7 +56,6 @@
             android:textColor="@color/mySecondary"
             android:textSize="14sp" />
 
-        <!-- Category, Date, and Time -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +65,6 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <!-- Item Category -->
             <TextView
                 android:id="@+id/itemCategory"
                 android:layout_width="0dp"
@@ -80,7 +74,6 @@
                 android:textColor="@color/mySecondary"
                 android:textSize="16sp" />
 
-            <!-- Date and Time Container -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,7 +81,6 @@
                 android:gravity="end"
                 android:orientation="horizontal">
 
-                <!-- Item Date -->
                 <TextView
                     android:id="@+id/itemDate"
                     android:layout_width="wrap_content"
@@ -97,12 +89,10 @@
                     android:textColor="@color/myGray"
                     android:textSize="14sp" />
 
-                <!-- Spacer -->
                 <View
                     android:layout_width="8dp"
                     android:layout_height="0dp" />
 
-                <!-- Item Time -->
                 <TextView
                     android:id="@+id/itemTime"
                     android:layout_width="wrap_content"

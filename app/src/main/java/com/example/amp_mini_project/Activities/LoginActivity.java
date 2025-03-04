@@ -25,8 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button loginButton;
-    private TextView createAccount;
     private EditText usernameField, passwordField;
 
     @Override
@@ -34,20 +32,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-
-        // Initialize views
-        loginButton = findViewById(R.id.login_button);
-        createAccount = findViewById(R.id.create_account);
+        Button loginButton = findViewById(R.id.login_button);
+        TextView createAccount = findViewById(R.id.create_account);
         usernameField = findViewById(R.id.username);
         passwordField = findViewById(R.id.password);
-
-        // Handle window insets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

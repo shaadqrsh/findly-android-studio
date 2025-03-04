@@ -30,8 +30,6 @@ import java.util.Map;
 
 public class MessagesActivity extends AppCompatActivity {
 
-
-    private RecyclerView recyclerView;
     private DatabaseMessageAdapter adapter;
     private List<DatabaseMessage> messageList = new ArrayList<>();
     private LinearLayout loadingOverlay;
@@ -48,7 +46,7 @@ public class MessagesActivity extends AppCompatActivity {
         setupBottomNavigation();
         MyApp app = (MyApp) getApplication();
         currentUserId = app.getUserId();
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DatabaseMessageAdapter(this, messageList, currentUserId);
         recyclerView.setAdapter(adapter);
@@ -109,18 +107,14 @@ public class MessagesActivity extends AppCompatActivity {
         LinearLayout foundButton = findViewById(R.id.button_found);
         LinearLayout mineButton = findViewById(R.id.button_mine);
         LinearLayout profileButton = findViewById(R.id.button_profile);
-
         lostButton.setOnClickListener(v -> navigateTo(LostListActivity.class));
         foundButton.setOnClickListener(v -> navigateTo(FoundListActivity.class));
         mineButton.setOnClickListener(v -> navigateTo(MineListActivity.class));
         profileButton.setOnClickListener(v -> navigateTo(ProfileActivity.class));
-
         LinearLayout messagesButton = findViewById(R.id.button_messages);
         messagesButton.setBackgroundColor(getColor(R.color.mySecondary));
-
         TextView textView = findViewById(R.id.text_messages);
         textView.setTextColor(getResources().getColor(R.color.myPrimary));
-
         ImageView imageView = findViewById(R.id.icon_messages);
         imageView.setColorFilter(getResources().getColor(R.color.myPrimary));
     }

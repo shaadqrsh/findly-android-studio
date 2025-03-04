@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Image Placeholder -->
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_placeholder" />
 
-        <!-- Upload Image Button (only visible in edit mode) -->
         <Button
             android:id="@+id/upload_image_button"
             android:layout_width="match_parent"
@@ -34,7 +32,6 @@
             android:visibility="gone" />
 
 
-        <!-- Item Name (View and Edit versions) -->
         <TextView
             android:id="@+id/item_name"
             android:layout_width="match_parent"
@@ -55,7 +52,6 @@
             android:textSize="24sp"
             android:visibility="gone" />
 
-        <!-- Category (View and Edit versions) -->
         <TextView
             android:id="@+id/item_category"
             android:layout_width="match_parent"
@@ -71,7 +67,6 @@
             android:visibility="gone" />
 
 
-        <!-- Description (View and Edit versions) -->
         <TextView
             android:id="@+id/item_description"
             android:layout_width="match_parent"
@@ -98,7 +93,6 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- Uploader Details Container (unchanged) -->
         <LinearLayout
             android:id="@+id/uploader_details_container"
             android:layout_width="match_parent"
@@ -107,7 +101,6 @@
             android:layout_marginBottom="16dp"
             android:gravity="center_vertical">
 
-            <!-- Left side: Profile icon and uploader info -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -115,7 +108,6 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- Profile Icon -->
                 <ImageView
                     android:id="@+id/profile_icon"
                     android:layout_width="40dp"
@@ -124,7 +116,6 @@
                     android:layout_marginEnd="8dp"
                     android:contentDescription="Profile Icon" />
 
-                <!-- Uploader Label and Name -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +138,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Right side: Uploaded on label and date/time -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -171,7 +161,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- For uploader: Edit button to toggle editing -->
         <Button
             android:id="@+id/edit_item_button"
             android:layout_width="match_parent"
@@ -183,7 +172,6 @@
             android:visibility="gone"
             android:layout_marginBottom="8dp" />
 
-        <!-- Contact Button (for non-uploader) -->
         <Button
             android:id="@+id/contact_button"
             android:layout_width="match_parent"
@@ -193,7 +181,6 @@
             android:textAllCaps="false"
             android:textColor="@color/myWhite" />
 
-        <!-- Mark as Open Button (for uploader, if desired) -->
         <Button
             android:id="@+id/mark_button"
             android:layout_width="match_parent"
@@ -205,7 +192,6 @@
 
     </LinearLayout>
 
-    <!-- Loading Overlay -->
     <LinearLayout
         android:id="@+id/loading_overlay"
         android:layout_width="match_parent"

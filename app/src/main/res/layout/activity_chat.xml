@@ -9,7 +9,6 @@
     android:background="@color/myWhite"
     tools:context=".Activities.ChatActivity">
 
-    <!-- Top Section: Item Details (only Image and Name) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -17,7 +16,6 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- Item Image -->
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="40dp"
@@ -27,7 +25,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_placeholder_2" />
 
-        <!-- Item Name -->
         <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
@@ -38,7 +35,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Middle Section: RecyclerView for Chat Messages -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
@@ -46,7 +42,6 @@
         android:layout_weight="1"
         android:padding="16dp" />
 
-    <!-- Checkboxes Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,14 +73,12 @@
 
     </LinearLayout>
 
-    <!-- Bottom Section: Input Field and Send Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- Chat Input Field -->
         <EditText
             android:id="@+id/chat_input"
             android:layout_width="0dp"
@@ -95,7 +88,6 @@
             android:hint="Type your message"
             android:textColor="@color/myBlack" />
 
-        <!-- Send Button -->
 
     </LinearLayout>
 

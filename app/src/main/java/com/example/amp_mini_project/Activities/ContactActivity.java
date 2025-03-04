@@ -38,7 +38,6 @@ public class ContactActivity extends AppCompatActivity {
 
     private EditText multilineTextField;
     private CheckBox sendPhoneCheckbox, sendEmailCheckbox;
-    private Button sendButton;
     private View loadingOverlay;
 
     private DatabaseItem currentItem;
@@ -60,7 +59,7 @@ public class ContactActivity extends AppCompatActivity {
         multilineTextField = findViewById(R.id.multiline_text_field);
         sendPhoneCheckbox = findViewById(R.id.send_phone_checkbox);
         sendEmailCheckbox = findViewById(R.id.send_email_checkbox);
-        sendButton = findViewById(R.id.send_button);
+        Button sendButton = findViewById(R.id.send_button);
         currentItemKey = getIntent().getStringExtra("itemKey");
         if (currentItemKey != null) {
             loadItemDetails(currentItemKey);

@@ -60,8 +60,6 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
-
-        // Initialize Views
         itemName = findViewById(R.id.item_name);
         itemCategory = findViewById(R.id.item_category);
         itemDescription = findViewById(R.id.item_description);
@@ -77,14 +75,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         itemImage = findViewById(R.id.item_image);
         profileIcon = findViewById(R.id.profile_icon);
         loadingOverlay = findViewById(R.id.loading_overlay);
-
-        // Initially hide the edit button; will be shown for uploader
         editItemButton.setVisibility(View.GONE);
-
-        // Get itemKey from Intent
         Intent intent = getIntent();
         currentItemKey = intent.getStringExtra("itemKey");
-
         if (currentItemKey != null) {
             loadItemDetails(currentItemKey);
         }
@@ -152,17 +145,13 @@ public class ItemDetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     currentItem = snapshot.getValue(DatabaseItem.class);
-                    if(currentItem != null){
-                        // Populate view TextViews using DatabaseItem fields
+                    if(currentItem != null) {
                         itemName.setText(currentItem.getName());
                         itemCategory.setText(currentItem.getCategory());
                         itemDescription.setText(currentItem.getDescription());
                         uploadDateTime.setText(currentItem.displayDate() + " " + currentItem.displayTime());
-
-                        // Pre-populate EditTexts
                         itemNameEdit.setText(currentItem.getName());
                         itemDescriptionEdit.setText(currentItem.getDescription());
-                        // Setup Spinner: load array from resources and pre-select current category
                         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ItemDetailActivity.this,
                                 R.array.categories, android.R.layout.simple_spinner_item);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -195,8 +184,6 @@ public class ItemDetailActivity extends AppCompatActivity {
                         } else {
                             isImageLoaded = true;
                         }
-
-                        // Load uploader details
                         currentItem.getUserData(DatabaseUser.key_name, "Unknown User", new UserDataCallback() {
                             @Override
                             public void onUserDataRetrieved(String name) {
@@ -205,7 +192,6 @@ public class ItemDetailActivity extends AppCompatActivity {
                                 checkIfLoadingComplete();
                             }
                         });
-
                         currentItem.getUserData("profileUri", "", new UserDataCallback() {
                             @Override
                             public void onUserDataRetrieved(String profileImage) {

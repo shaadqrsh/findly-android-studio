@@ -54,7 +54,6 @@
         android:textColor="@color/myBlack"
         android:textColorHint="@color/myGray" />
 
-    <!-- Login Button -->
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
@@ -66,7 +65,6 @@
         android:text="Login"
         android:textColor="@color/myWhite" />
 
-    <!-- Create Account Text -->
     <TextView
         android:id="@+id/create_account"
         android:layout_width="match_parent"

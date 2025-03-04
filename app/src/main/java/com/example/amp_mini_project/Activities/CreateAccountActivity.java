@@ -23,16 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 public class CreateAccountActivity extends AppCompatActivity {
 
     private EditText firstName, lastName, phoneNumber, email, username, password, confirmPassword;
-    private Button signUpButton;
-    private TextView loginText;
     private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
-        // Initialize fields
         firstName = findViewById(R.id.first_name);
         lastName = findViewById(R.id.last_name);
         phoneNumber = findViewById(R.id.phone_number);
@@ -40,12 +36,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirm_password);
-        signUpButton = findViewById(R.id.login_button);
-        loginText = findViewById(R.id.create_account);
-
+        Button signUpButton = findViewById(R.id.login_button);
+        TextView loginText = findViewById(R.id.create_account);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
-        // Redirect to LoginActivity
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +47,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Handle Sign-Up logic
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImageView;
     private TextView usernameTextView, nameTextView, emailTextView, phoneTextView;
     private EditText nameEditText, emailEditText, phoneEditText;
-    private Button changeProfilePicButton, editButton;
+    private Button changeProfilePicButton, editButton, logoutButton;
     private Uri imageUri;
     private DatabaseReference usersRef;
     private StorageReference storageRef;
@@ -65,8 +65,8 @@ public class ProfileActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneEditText);
         changeProfilePicButton = findViewById(R.id.changeProfilePicButton);
         editButton = findViewById(R.id.editButton);
+        logoutButton = findViewById(R.id.logoutButton);
 
-        // Initially hide the change profile picture button and editing fields
         changeProfilePicButton.setVisibility(View.GONE);
         nameEditText.setVisibility(View.GONE);
         emailEditText.setVisibility(View.GONE);
@@ -90,6 +90,14 @@ public class ProfileActivity extends AppCompatActivity {
             } else {
                 enableEditing();
             }
+        });
+
+        logoutButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+            app.setUserId("");
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
@@ -167,34 +175,25 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void enableEditing() {
         isEditing = true;
-        // Hide display TextViews
         nameTextView.setVisibility(View.GONE);
         emailTextView.setVisibility(View.GONE);
         phoneTextView.setVisibility(View.GONE);
-        // Show editing fields
         nameEditText.setVisibility(View.VISIBLE);
         emailEditText.setVisibility(View.VISIBLE);
         phoneEditText.setVisibility(View.VISIBLE);
-        // Change button text to "Submit"
         editButton.setText("Submit");
-        // Show the change picture button
         changeProfilePicButton.setVisibility(View.VISIBLE);
     }
 
-    // Updated disableEditing to revert to view mode.
     private void disableEditing() {
         isEditing = false;
-        // Show display TextViews
         nameTextView.setVisibility(View.VISIBLE);
         emailTextView.setVisibility(View.VISIBLE);
         phoneTextView.setVisibility(View.VISIBLE);
-        // Hide editing fields
         nameEditText.setVisibility(View.GONE);
         emailEditText.setVisibility(View.GONE);
         phoneEditText.setVisibility(View.GONE);
-        // Reset the edit button text
         editButton.setText("Edit");
-        // Hide the change picture button
         changeProfilePicButton.setVisibility(View.GONE);
     }
 
@@ -223,7 +222,6 @@ public class ProfileActivity extends AppCompatActivity {
             emailEditText.setError("Invalid email address");
             return;
         }
-        // Updated regex to allow optional leading '+' for country codes.
         if (!updatedPhone.matches("^\\+?\\d{10,15}$")) {
             phoneEditText.setError("Phone number must be 10-15 digits long, optionally starting with '+'");
             return;

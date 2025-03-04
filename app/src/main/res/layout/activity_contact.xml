@@ -6,7 +6,6 @@
     android:background="@color/myWhite"
     tools:context=".Activities.ContactActivity">
 
-    <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,6 @@
             android:id="@+id/top_bar"
             layout="@layout/fragment_top_bar" />
 
-        <!-- Top Section: Item Details -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +23,6 @@
             android:layout_marginRight="16dp"
             android:orientation="horizontal">
 
-            <!-- Left: Item Image (fixed size) -->
             <ImageView
                 android:id="@+id/item_image"
                 android:layout_width="80dp"
@@ -34,14 +31,12 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_placeholder" />
 
-            <!-- Right: Item info divided in two parts -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!-- Top part: Item name and category on one line -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,7 +61,6 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Bottom part: Item description with limited height -->
                 <TextView
                     android:id="@+id/item_description"
                     android:layout_width="match_parent"
@@ -80,7 +74,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Profile Display Section with Uploaded On detail -->
         <LinearLayout
             android:id="@+id/profile_container"
             android:layout_width="match_parent"
@@ -91,7 +84,6 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <!-- Left side: Profile Icon and Uploader info -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -130,7 +122,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Right side: Uploaded on detail -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +146,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Multiline Text Field Filling Remaining Space -->
         <EditText
             android:id="@+id/multiline_text_field"
             android:layout_width="match_parent"
@@ -172,7 +162,6 @@
             android:textColor="@color/myBlack"
             android:textColorHint="@color/myGray" />
 
-        <!-- Checkboxes Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,7 +188,6 @@
                 android:textColor="@color/mySecondary" />
         </LinearLayout>
 
-        <!-- Send Button Spanning Full Width -->
         <Button
             android:id="@+id/send_button"
             android:layout_width="match_parent"
@@ -211,7 +199,6 @@
 
     </LinearLayout>
 
-    <!-- Loading Overlay -->
     <LinearLayout
         android:id="@+id/loading_overlay"
         android:layout_width="match_parent"

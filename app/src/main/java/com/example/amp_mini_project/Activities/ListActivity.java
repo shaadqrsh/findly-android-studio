@@ -28,43 +28,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private DatabaseItemAdapter adapter;
     private List<DatabaseItem> itemList;
     private List<DatabaseItem> filteredList;
-    private List<String> keyList;
     private DatabaseReference databaseReference;
     private SearchView searchView;
     private TextView appName;
 
     protected int typeFilter;
     private View loadingOverlay;
-    private int itemsToLoad = 0; // Total number of items to load
-    private int itemsLoaded = 0; // Number of items fully loaded (image and username)
+    private int itemsToLoad = 0;
+    private int itemsLoaded = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         appName = findViewById(R.id.app_name);
-
         searchView = findViewById(R.id.searchView);
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         searchView.clearFocus();
-
         itemList = new ArrayList<>();
-        keyList = new ArrayList<>();
         filteredList = new ArrayList<>();
         adapter = new DatabaseItemAdapter(this, filteredList, this::itemLoaded);
         recyclerView.setAdapter(adapter);
         loadingOverlay = findViewById(R.id.loading_overlay);
-
         databaseReference = FirebaseDatabase.getInstance().getReference("entries");
         fetchItemsFromDatabase();
         setupSearch();
-
         FloatingActionButton buttonFab = findViewById(R.id.fab_add_item);
         buttonFab.setOnClickListener(v -> {
             Intent intent = new Intent(ListActivity.this, AddItemActivity.class);
@@ -79,14 +70,12 @@ public class ListActivity extends AppCompatActivity {
     private void fetchItemsFromDatabase() {
         MyApp app = (MyApp) getApplication();
         String userId = app.getUserId();
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 itemList.clear();
                 itemsToLoad = 0;
                 itemsLoaded = 0;
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     DatabaseItem item = dataSnapshot.getValue(DatabaseItem.class);
 
@@ -99,13 +88,11 @@ public class ListActivity extends AppCompatActivity {
                         }
                     }
                 }
-
                 itemList.sort((item1, item2) -> Long.compare(item2.getUploadTime(), item1.getUploadTime()));
                 filteredList.clear();
                 filteredList.addAll(itemList);
                 adapter.notifyDataSetChanged();
-
-                hideLoadingOverlay(); // Hide overlay immediately after data is loaded
+                hideLoadingOverlay();
             }
 
             @Override

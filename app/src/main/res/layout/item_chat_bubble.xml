@@ -7,7 +7,6 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <!-- Profile Icon on the Left (for received messages) -->
     <ImageView
         android:id="@+id/profile_icon_left"
         android:layout_width="40dp"
@@ -16,7 +15,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_placeholder" />
 
-    <!-- Chat Bubble Container with a minWidth so it can at least display the timestamp -->
     <LinearLayout
         android:id="@+id/bubble_container"
         android:layout_width="wrap_content"
@@ -26,7 +24,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <!-- Message Text -->
         <TextView
             android:id="@+id/message_text"
             android:layout_width="wrap_content"
@@ -35,7 +32,6 @@
             android:textColor="@color/myBlack"
             android:textSize="16sp" />
 
-        <!-- Buttons Row: Copy Email and Copy Phone Number -->
         <LinearLayout
             android:id="@+id/buttons_container"
             android:layout_width="wrap_content"
@@ -61,7 +57,6 @@
                 android:textColor="@color/myWhite" />
         </LinearLayout>
 
-        <!-- Status Row: Date/Time and Read Receipt Icon -->
         <LinearLayout
             android:id="@+id/status_container"
             android:layout_width="match_parent"
@@ -88,7 +83,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Profile Icon on the Right (for sent messages) -->
     <ImageView
         android:id="@+id/profile_icon_right"
         android:layout_width="40dp"

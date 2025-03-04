@@ -29,13 +29,11 @@ import java.util.List;
 public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapter.ItemViewHolder> {
     private List<DatabaseItem> itemList;
     private Context context;
-    private final Runnable itemLoadedCallback;
     private boolean imageLoaded = false;
 
     public DatabaseItemAdapter(Context context, List<DatabaseItem> itemList, Runnable itemLoadedCallback) {
         this.context = context;
         this.itemList = itemList;
-        this.itemLoadedCallback = itemLoadedCallback;
     }
 
     @NonNull
@@ -49,14 +47,11 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         DatabaseItem item = itemList.get(position);
-
         holder.itemName.setText(item.getName());
         holder.itemCategory.setText(item.getCategory());
         holder.itemDate.setText(item.displayDate());
         holder.itemTime.setText(item.displayTime());
-
         String userId = ((MyApp) context.getApplicationContext()).getUserId();
-
         if (item.getUploaderId().equals(userId))
         {
             holder.itemUploader.setText(item.getStatus() == 0 ? "Open" : "Closed");
@@ -102,6 +97,14 @@ public class DatabaseItemAdapter extends RecyclerView.Adapter<DatabaseItemAdapte
     @Override
     public int getItemCount() {
         return itemList.size();
+    }
+
+    public boolean isImageLoaded() {
+        return imageLoaded;
+    }
+
+    public void setImageLoaded(boolean imageLoaded) {
+        this.imageLoaded = imageLoaded;
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {

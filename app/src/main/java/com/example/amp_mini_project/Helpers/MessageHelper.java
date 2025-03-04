@@ -46,13 +46,11 @@ public class MessageHelper {
                         }
                     }
                 }
-                // Implement other methods (onChildAdded, etc.) if needed.
                 @Override public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {}
                 @Override public void onChildRemoved(@NonNull DataSnapshot snapshot) {}
                 @Override public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {}
                 @Override public void onCancelled(@NonNull DatabaseError error) {}
             };
-            // Filter by the current item if needed:
             messagesRef.orderByChild("itemId").equalTo(currentItemKey)
                     .addChildEventListener(childListener);
         }

@@ -24,17 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapter.CombinedMessageViewHolder> {
 
     private List<DatabaseMessage> messageList;
-    private String currentUserId;
+    private final String currentUserId;
 
     public DatabaseChatAdapter(List<DatabaseMessage> messageList, String currentUserId) {
         this.messageList = messageList;
@@ -42,7 +39,6 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
         sortMessages();
     }
 
-    // Sort messages by timestamp so that oldest is at the top and latest is at the bottom.
     private void sortMessages() {
         Collections.sort(messageList, new Comparator<DatabaseMessage>() {
             @Override
@@ -189,9 +185,7 @@ public class DatabaseChatAdapter extends RecyclerView.Adapter<DatabaseChatAdapte
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Optionally handle error.
-                }
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
         }
     }

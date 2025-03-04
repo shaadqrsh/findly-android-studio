@@ -13,10 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         MyApp app = (MyApp) getApplication();
         // app.setUserId("shaad");
-
         new Handler().postDelayed(() -> {
             Intent intent;
             if (app.getUserId() == null) {

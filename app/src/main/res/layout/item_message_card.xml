@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Item Image on the left -->
         <ImageView
             android:id="@+id/ivItemImage"
             android:layout_width="60dp"
@@ -27,7 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_placeholder" />
 
-        <!-- Item name (first line) -->
         <TextView
             android:id="@+id/tvItemName"
             android:layout_width="0dp"
@@ -43,7 +41,6 @@
             app:layout_constraintStart_toEndOf="@id/ivItemImage"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Other person's name (second line) -->
         <TextView
             android:id="@+id/tvOtherPersonName"
             android:layout_width="0dp"
@@ -56,7 +53,6 @@
             app:layout_constraintStart_toStartOf="@id/tvItemName"
             app:layout_constraintTop_toBottomOf="@id/tvItemName" />
 
-        <!-- Last message (third line) -->
         <TextView
             android:id="@+id/tvLastMessage"
             android:layout_width="0dp"
@@ -68,7 +64,6 @@
             app:layout_constraintStart_toStartOf="@id/tvOtherPersonName"
             app:layout_constraintTop_toBottomOf="@id/tvOtherPersonName" />
 
-        <!-- Unread message count (top-right) -->
         <TextView
             android:id="@+id/tvUnreadCount"
             android:layout_width="wrap_content"
@@ -86,8 +81,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Last message timestamp (bottom-right) -->
+        
         <TextView
             android:id="@+id/tvTimestamp"
             android:layout_width="wrap_content"
