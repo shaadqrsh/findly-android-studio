@@ -1,10 +1,10 @@
-package com.example.amp_mini_project.Firebase;
+package com.example.findly.Firebase;
 
 import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
-import com.example.amp_mini_project.Helpers.UserDataCallback;
+import com.example.findly.Helpers.UserDataCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

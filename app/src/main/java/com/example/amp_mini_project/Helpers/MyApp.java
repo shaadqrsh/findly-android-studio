@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Helpers;
+package com.example.findly.Helpers;
 
 public class MyApp extends android.app.Application {
     private String userId;

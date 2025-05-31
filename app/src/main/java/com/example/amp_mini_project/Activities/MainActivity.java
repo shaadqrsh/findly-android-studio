@@ -1,12 +1,12 @@
-package com.example.amp_mini_project.Activities;
+package com.example.findly.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.R;
+import com.example.findly.Helpers.MyApp;
+import com.example.findly.R;
 
 public class MainActivity extends AppCompatActivity {
     @Override

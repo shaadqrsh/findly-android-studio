@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.amp_mini_project"
+    namespace = "com.example.findly"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.amp_mini_project"
+        applicationId = "com.example.findly"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

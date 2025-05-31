@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Firebase;
+package com.example.findly.Firebase;
 
 public class DatabaseMessage {
     private String senderId;

@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Activities;
+package com.example.findly.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.amp_mini_project.Firebase.DatabaseItem;
-import com.example.amp_mini_project.Firebase.DatabaseItemAdapter;
-import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.R;
+import com.example.findly.Firebase.DatabaseItem;
+import com.example.findly.Firebase.DatabaseItemAdapter;
+import com.example.findly.Helpers.MyApp;
+import com.example.findly.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

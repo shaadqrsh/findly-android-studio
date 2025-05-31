@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Helpers;
+package com.example.findly.Helpers;
 
 public interface UserDataCallback {
     void onUserDataRetrieved(String userData);

@@ -1,8 +1,8 @@
-package com.example.amp_mini_project.Helpers;
+package com.example.findly.Helpers;
 
 import androidx.annotation.NonNull;
 
-import com.example.amp_mini_project.Firebase.DatabaseMessage;
+import com.example.findly.Firebase.DatabaseMessage;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

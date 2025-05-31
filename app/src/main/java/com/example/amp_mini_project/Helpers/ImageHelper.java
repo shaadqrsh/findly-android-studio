@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Helpers;
+package com.example.findly.Helpers;
 
 import android.Manifest;
 import android.app.Activity;
@@ -67,7 +67,7 @@ public class ImageHelper {
             File photoFile = createImageFile(activity);
             if (photoFile != null) {
                 photoUri = FileProvider.getUriForFile(activity,
-                        "com.example.amp_mini_project.fileprovider",
+                        "com.example.findly.fileprovider",
                         photoFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 activity.startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);

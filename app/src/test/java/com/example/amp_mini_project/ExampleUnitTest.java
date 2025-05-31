@@ -1,4 +1,4 @@
-package com.example.amp_mini_project;
+package com.example.findly;
 
 import org.junit.Test;
 

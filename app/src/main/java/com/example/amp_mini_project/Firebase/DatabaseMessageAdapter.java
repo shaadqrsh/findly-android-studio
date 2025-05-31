@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Firebase;
+package com.example.findly.Firebase;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.example.amp_mini_project.Activities.ChatActivity;
-import com.example.amp_mini_project.R;
+import com.example.findly.Activities.ChatActivity;
+import com.example.findly.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

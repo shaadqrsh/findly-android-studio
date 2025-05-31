@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AMP_Mini_Project"
+rootProject.name = "findly"
 include(":app")
  

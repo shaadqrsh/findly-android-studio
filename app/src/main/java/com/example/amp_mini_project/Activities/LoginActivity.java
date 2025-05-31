@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Activities;
+package com.example.findly.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.amp_mini_project.Firebase.DatabaseUser;
-import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.R;
+import com.example.findly.Firebase.DatabaseUser;
+import com.example.findly.Helpers.MyApp;
+import com.example.findly.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

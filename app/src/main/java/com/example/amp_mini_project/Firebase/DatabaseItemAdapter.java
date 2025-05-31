@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Firebase;
+package com.example.findly.Firebase;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,9 +17,9 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.amp_mini_project.Activities.ItemDetailActivity;
-import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.R;
+import com.example.findly.Activities.ItemDetailActivity;
+import com.example.findly.Helpers.MyApp;
+import com.example.findly.R;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;

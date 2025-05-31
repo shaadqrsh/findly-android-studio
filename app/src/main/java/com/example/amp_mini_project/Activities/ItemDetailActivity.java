@@ -1,4 +1,4 @@
-package com.example.amp_mini_project.Activities;
+package com.example.findly.Activities;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -23,14 +23,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.target.Target;
-import com.example.amp_mini_project.Firebase.DatabaseItem;
-import com.example.amp_mini_project.Firebase.DatabaseUser;
-import com.example.amp_mini_project.Helpers.MyApp;
-import com.example.amp_mini_project.R;
-import com.example.amp_mini_project.Helpers.UserDataCallback;
+import com.example.findly.Firebase.DatabaseItem;
+import com.example.findly.Firebase.DatabaseUser;
+import com.example.findly.Helpers.MyApp;
+import com.example.findly.R;
+import com.example.findly.Helpers.UserDataCallback;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.amp_mini_project.Helpers.ImageHelper;
+import com.example.findly.Helpers.ImageHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
